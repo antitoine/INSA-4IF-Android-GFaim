@@ -1,2 +1,44 @@
 \section{Spécifications Minimales}
 
+    Les spécifications données par le sujet sont les suivantes : \\
+    
+\begin{itemize}
+    \item[\textbullet] Etre disponible sur smartphone.
+    \item[\textbullet] Suivre le guide de style d'Android et la charte graphique de l'INSA, dans la mesure du possible.
+    \item[\textbullet] Prendre en compte différents types d'utilisateurs et différents types de points de restauration.
+    \item[\textbullet] S'adapter aux différents types d'utilisateurs.
+    \item[\textbullet] Fournir à l'utilisateur des informations pertinentes dans son contexte d'utilisation. \\
+\end{itemize}
+
+    Ces spécifications générales seront étendues dans la suite de cette section. \\
+    
+    Les spécifications de notre application, concernant les deux premiers items de la liste ci dessus sont décrites dans le tableau ci-après. Elle décrive les différentes contraintes ergonomiques et d'accessibilité qui seront respectées par l'application développée. 
+
+\begin{table}[H]
+    \centering
+    \caption{Tableau des spécifications minimales}
+    \label{min-spec-table}
+    \begin{tabular}{p{8cm}|p{8cm}}
+        \bf{Spécification} & \bf{Justification} \\ \hline
+        Chaque vue présentera une information spécifique & Ne pas diluer l'information importante dans une grande quantité d'information inutile \\ \hline
+        Chaque vue présentera un nombre réduit de contrôles ($<= 10$) & \'Eviter d'introduire une complexité d'usage de l'application \\ \hline
+        Les contrôles seront regroupés dans les zones accessibles de l'écran &  Faciliter l'accès aux contrôles \\ \hline
+        Les contrôles dont la fonctionnalité est la même (ex: suppression) sur des vues différentes partageront la même symbolique & Uniformiser, homogénéiser, la symbolique de l'application \\ \hline
+        Les contrôles et zones non utilisables seront grisées & Suggéger à l'utilisateur d'ignorer certaines zones ou contrôles et éviter les erreurs \\ \hline
+        Les chaînes de caractères seront affichées avec une police adaptée au media utilisé & Permettre à l'utilisateur de ne pas se fatiguer \\ \hline
+        Les polices de caractères et couleurs seront personnalisables dans le menu "Personnalisation" & Permettre à l'utilisateur de paramétrer l'application selon ses besoins \\ \hline
+        Les miniatures seront agrandies quand l'utilisateur clique dessus & Permettre à l'utilisateur de voir l'image quelque soit sa condition \\ \hline
+        L'information principale sera présentée au centre de la vue & Faciliter l'accès à l'information en respectant les normes d'ergonomie \\ \hline
+        Un bandeau présentant les contrôles globaux sera présent sur chaque vue & Donner accès aux contrôles depuis n'importe où dans l'application \\ \hline
+        Un menu masquable sera présent sur la gauche de l'application et donnera accès aux principales fonctionnalités de l'application & Permettre à l'utilisateur de naviguer efficacement \\ \hline
+        La profondeur de ce menu ne devra pas excéder deux niveaux & Conserver une interface simple et lisible pour l'utilisateur \\ \hline 
+        Les messages d'erreur contiendront une description brève de l'erreur et la démarche à suivre pour la résoudre & Guider l'utilisateur de manière efficace en cas d'erreur \\ \hline
+        Les notifications seront réglables pour laisser la liberté à l'utilisateur de les activer ou non & Ne pas imposer une fonctionnalité à l'utilisateur \\ \hline
+        Les enchainement de vue de type processus seront limités à trois étapes si ils existent & Ne pas lasser l'utilisateur avec une procédure trop longue \\ \hline
+        Les gestes et les inputs tactiles seront utilisés pour les barres de défilement qui n'apparaitront pas sur l'interface & Alléger l'interface graphique et améliorer l'expérience utilisateur en respectant les principes intuitifs \\
+    \end{tabular}
+\end{table}
+
+    Le schéma ci-après décrit l'enchaînement des vues de l'application.
+    
+    \todo{Insérer le schéma d'enchainement des fenêtres ici}
