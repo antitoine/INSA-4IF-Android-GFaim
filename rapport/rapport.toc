@@ -1,0 +1,5 @@
+\select@language {french}
+\contentsline {part}{Introduction}{4}{chapter*.1}
+\contentsline {part}{Sp\IeC {\'e}cifications}{5}{section*.3}
+\contentsline {chapter}{\numberline {1}Sp\IeC {\'e}cifications}{5}{chapter.1}
+\contentsline {section}{\numberline {.1}Hello world !}{5}{section.1.1}

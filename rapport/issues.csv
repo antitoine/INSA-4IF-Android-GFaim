@@ -1,0 +1,66 @@
+#;Projet;Tracker;Tâche parente;Statut;Priorité;Sujet;Auteur;Assigné à;Mis-à-jour;Catégorie;Version cible;Début;Echéance;Temps estimé;Temps passé;% réalisé;Créé;Fermé;Demandes liées;Privée
+43;ASI;Tâche;"";Validée;Normal;Conception d'ensemble;Hugues Verlin;"";01/12/2015 16:28;"";"";17/11/2015;18/11/2015;14,00;0;100;17/11/2015 09:57;01/12/2015 16:28;"";Non
+49;ASI;Tâche;#43;Validée;Normal;Immersion;Hugues Verlin;"";17/11/2015 10:10;"";"";17/11/2015;17/11/2015;6,00;2,00;100;17/11/2015 10:05;17/11/2015 10:05;"";Non
+50;ASI;Tâche;#43;Validée;Normal;Découpage en blocs applicatifs;Hugues Verlin;"";17/11/2015 10:15;"";"";17/11/2015;18/11/2015;4,00;2,75;100;17/11/2015 10:12;17/11/2015 10:12;"";Non
+51;ASI;Tâche;#43;Validée;Normal;Diagramme d'état objet contact;Hugues Verlin;Paul Dautry;01/12/2015 16:32;"";"";17/11/2015;18/11/2015;4,00;3,25;100;17/11/2015 10:15;01/12/2015 16:32;"";Non
+44;ASI;Tâche;"";En cours;Normal;Conception fonctionnelle détaillée;Hugues Verlin;"";02/12/2015 13:11;"";"";17/11/2015;27/11/2015;50,50;0;97;17/11/2015 09:58;"";"";Non
+52;ASI;Tâche;#44;En cours;Normal;Diagrammes d'activité;Hugues Verlin;"";01/12/2015 16:23;"";"";17/11/2015;18/11/2015;6,50;7,25;97;17/11/2015 10:27;"";"";Non
+61;ASI;Tâche;#52;En cours;Normal;DA CU1 - CU4;Hugues Verlin;Lisa Courant;01/12/2015 16:20;"";"";17/11/2015;18/11/2015;2,00;0,50;100;17/11/2015 10:44;"";"";Non
+74;ASI;Tâche;#61;Validée;Normal;DA CU1;Hugues Verlin;"";21/11/2015 13:43;"";"";17/11/2015;18/11/2015;0,50;1,00;100;20/11/2015 11:22;21/11/2015 13:43;"";Non
+75;ASI;Tâche;#61;Validée;Normal;DA CU2;Hugues Verlin;"";21/11/2015 14:00;"";"";17/11/2015;18/11/2015;0,50;1,00;100;20/11/2015 11:23;21/11/2015 14:00;"";Non
+76;ASI;Tâche;#61;Validée;Normal;DA CU3;Hugues Verlin;"";01/12/2015 16:20;"";"";17/11/2015;18/11/2015;0,50;2,00;100;20/11/2015 11:27;01/12/2015 16:20;"";Non
+80;ASI;Tâche;#61;Validée;Normal;DA CU4;Hugues Verlin;"";01/12/2015 16:20;"";"";17/11/2015;18/11/2015;0,50;1,75;100;20/11/2015 11:29;01/12/2015 16:20;"";Non
+62;ASI;Tâche;#52;Validée;Normal;DA CU5-CU7;Hugues Verlin;Lisa Courant;01/12/2015 16:27;"";"";17/11/2015;18/11/2015;2,25;0;100;17/11/2015 10:45;01/12/2015 16:27;"";Non
+77;ASI;Tâche;#62;Validée;Normal;DA CU5;Pierre Jarsaillon;Antoine Chabert;01/12/2015 16:21;"";"";17/11/2015;18/11/2015;0,75;2,50;100;20/11/2015 11:27;01/12/2015 16:21;"";Non
+78;ASI;Tâche;#62;Validée;Normal;DA CU6;Pierre Jarsaillon;"";01/12/2015 16:21;"";"";17/11/2015;18/11/2015;0,75;2,00;100;20/11/2015 11:28;01/12/2015 16:21;"";Non
+79;ASI;Tâche;#62;Validée;Normal;DA CU7;Pierre Jarsaillon;"";01/12/2015 16:23;"";"";17/11/2015;18/11/2015;0,75;2,00;100;20/11/2015 11:29;01/12/2015 16:23;"";Non
+63;ASI;Tâche;#52;Validée;Normal;DA CU8-CU9 (+CU10);Hugues Verlin;Pierre Jarsaillon;01/12/2015 16:28;"";"";17/11/2015;18/11/2015;2,25;0;91;17/11/2015 10:45;01/12/2015 16:28;"";Non
+81;ASI;Tâche;#63;Validée;Normal;DA CU8;Hugues Verlin;"";01/12/2015 16:22;"";"";17/11/2015;18/11/2015;1,00;1,50;100;20/11/2015 11:35;01/12/2015 16:22;"";Non
+82;ASI;Tâche;#63;Validée;Normal;DA CU9;Hugues Verlin;"";01/12/2015 16:23;"";"";17/11/2015;18/11/2015;1,00;1,50;100;20/11/2015 11:44;01/12/2015 16:23;"";Non
+83;ASI;Tâche;#63;En cours;Normal;DA CU10;Hugues Verlin;"";21/11/2015 17:30;"";"";17/11/2015;18/11/2015;0,25;1,25;20;20/11/2015 11:49;"";"";Non
+53;ASI;Tâche;#44;En cours;Normal;Diagrammes de Séquence Système;Hugues Verlin;"";02/12/2015 13:11;"";"";17/11/2015;24/11/2015;12,00;0;89;17/11/2015 10:27;"";"";Non
+64;ASI;Tâche;#53;En cours;Normal;DSS CU1-CU4;Hugues Verlin;Lisa Courant;02/12/2015 13:10;"";"";20/11/2015;24/11/2015;4,00;0;85;17/11/2015 11:17;"";"";Non
+84;ASI;Tâche;#64;Validée;Normal;DSS CU1;Hugues Verlin;"";02/12/2015 13:09;"";"";20/11/2015;24/11/2015;1,00;1,75;100;21/11/2015 12:19;24/11/2015 08:59;"";Non
+85;ASI;Tâche;#64;Terminée;Normal;DSS CU2;Hugues Verlin;"";02/12/2015 13:09;"";"";20/11/2015;24/11/2015;1,00;1,50;80;21/11/2015 12:19;"";"";Non
+86;ASI;Tâche;#64;Terminée;Normal;DSS CU3;Hugues Verlin;"";02/12/2015 13:09;"";"";20/11/2015;24/11/2015;1,00;1,40;80;21/11/2015 12:19;"";"";Non
+87;ASI;Tâche;#64;Terminée;Normal;DSS CU4;Hugues Verlin;"";02/12/2015 13:10;"";"";20/11/2015;24/11/2015;1,00;1,50;80;21/11/2015 12:20;"";"";Non
+65;ASI;Tâche;#53;En cours;Normal;DSS CU5-CU7;Hugues Verlin;Pierre Jarsaillon;02/12/2015 13:10;"";"";17/11/2015;24/11/2015;4,00;0;100;17/11/2015 11:18;"";"";Non
+88;ASI;Tâche;#65;Terminée;Normal;DSS CU5;Hugues Verlin;Antoine Chabert;02/12/2015 13:10;"";"";17/11/2015;24/11/2015;1,30;2,00;100;21/11/2015 12:22;"";"";Non
+89;ASI;Tâche;#65;Validée;Normal;DSS CU6;Hugues Verlin;"";02/12/2015 13:10;"";"";17/11/2015;24/11/2015;1,30;1,50;100;21/11/2015 12:23;01/12/2015 16:24;"";Non
+90;ASI;Tâche;#65;Validée;Normal;DSS CU7;Hugues Verlin;Lisa Courant;02/12/2015 13:10;"";"";17/11/2015;24/11/2015;1,40;1,75;100;21/11/2015 12:23;01/12/2015 16:24;"";Non
+66;ASI;Tâche;#53;Validée;Normal;DSS CU8-CU9 (+CU10);Hugues Verlin;Paul Dautry;02/12/2015 13:11;"";"";17/11/2015;24/11/2015;4,00;0;81;17/11/2015 11:20;01/12/2015 16:28;"";Non
+91;ASI;Tâche;#66;Terminée;Normal;DSS CU8;Hugues Verlin;"";02/12/2015 13:11;"";"";17/11/2015;24/11/2015;1,00;1,00;80;21/11/2015 12:24;"";"";Non
+92;ASI;Tâche;#66;Terminée;Normal;DSS CU9;Hugues Verlin;"";02/12/2015 13:11;"";"";17/11/2015;24/11/2015;1,00;1,00;80;21/11/2015 12:24;"";"";Non
+93;ASI;Tâche;#66;Terminée;Normal;DSS CU10;Hugues Verlin;"";02/12/2015 13:11;"";"";17/11/2015;24/11/2015;1,50;0;80;21/11/2015 12:24;"";"";Non
+106;ASI;Tâche;#66;Terminée;Normal;DSS - Identifier le client;Hugues Verlin;Lisa Courant;02/12/2015 13:11;"";"";17/11/2015;24/11/2015;0,50;0;90;23/11/2015 21:17;"";"";Non
+54;ASI;Tâche;#44;Terminée;Normal;Spécification IHM;Hugues Verlin;"";01/12/2015 17:48;"";"";17/11/2015;27/11/2015;32,00;0;100;17/11/2015 10:28;"";"";Non
+67;ASI;Tâche;#54;Validée;Normal;IHM Contact - Détail Contact;Hugues Verlin;Antoine Chabert;01/12/2015 16:26;"";"";17/11/2015;20/11/2015;8,00;16,75;100;17/11/2015 11:22;01/12/2015 16:26;"";Non
+68;ASI;Tâche;#54;Validée;Normal;IHM Contact - Liste Contact & IHM Contact;Hugues Verlin;Antoine Chabert;01/12/2015 16:26;"";"";17/11/2015;24/11/2015;8,00;10,00;100;17/11/2015 11:24;01/12/2015 16:26;"";Non
+69;ASI;Tâche;#54;Validée;Normal;IHM Agenda;Hugues Verlin;Hugues Verlin;01/12/2015 16:26;"";"";24/11/2015;27/11/2015;8,00;9,75;100;17/11/2015 11:25;01/12/2015 16:26;"";Non
+105;ASI;Tâche;#54;Validée;Normal;IHM client;Hugues Verlin;Hugues Verlin;01/12/2015 17:48;"";"";17/11/2015;27/11/2015;8,00;10,50;100;23/11/2015 21:00;01/12/2015 16:26;"";Non
+45;ASI;Tâche;"";Terminée;Normal;Conception applicative détaillée;Hugues Verlin;"";02/12/2015 13:08;"";"";24/11/2015;27/11/2015;32,00;0;83;17/11/2015 09:59;"";"";Non
+55;ASI;Tâche;#45;En cours;Normal;Diagrammes de Séquence Détaillés;Hugues Verlin;"";02/12/2015 13:08;"";"";24/11/2015;25/11/2015;24,00;4,00;84;17/11/2015 10:31;"";"";Non
+70;ASI;Tâche;#55;Validée;Normal;DSD CU1-CU4;Hugues Verlin;"";02/12/2015 13:08;"";"";24/11/2015;25/11/2015;8,00;2,00;85;17/11/2015 11:26;01/12/2015 16:28;"";Non
+94;ASI;Tâche;#70;Validée;Normal;DSD CU1;Hugues Verlin;"";02/12/2015 13:08;"";"";24/11/2015;25/11/2015;2,00;2,30;100;21/11/2015 12:25;24/11/2015 08:58;"";Non
+95;ASI;Tâche;#70;Terminée;Normal;DSD CU2;Hugues Verlin;"";02/12/2015 13:08;"";"";24/11/2015;25/11/2015;2,00;3,50;80;21/11/2015 12:25;"";"";Non
+96;ASI;Tâche;#70;Terminée;Normal;DSD CU3;Hugues Verlin;"";02/12/2015 13:08;"";"";24/11/2015;25/11/2015;2,00;2,30;80;21/11/2015 12:26;"";"";Non
+97;ASI;Tâche;#70;Terminée;Normal;DSD CU4;Hugues Verlin;"";02/12/2015 13:08;"";"";24/11/2015;25/11/2015;2,00;3,75;80;21/11/2015 12:26;"";"";Non
+71;ASI;Tâche;#55;Validée;Normal;DSD CU5-CU7;Hugues Verlin;"";02/12/2015 13:06;"";"";24/11/2015;25/11/2015;8,00;2,00;86;17/11/2015 11:26;01/12/2015 16:28;"";Non
+98;ASI;Tâche;#71;Validée;Normal;DSD CU5;Hugues Verlin;"";02/12/2015 13:05;"";"";24/11/2015;25/11/2015;2,60;2,00;100;21/11/2015 12:27;01/12/2015 16:28;"";Non
+99;ASI;Tâche;#71;Terminée;Normal;DSD CU6;Hugues Verlin;"";02/12/2015 13:06;"";"";24/11/2015;25/11/2015;2,60;2,25;80;21/11/2015 12:27;"";"";Non
+100;ASI;Tâche;#71;Terminée;Normal;DSD CU7;Hugues Verlin;"";02/12/2015 13:06;"";"";24/11/2015;25/11/2015;2,80;2,00;80;21/11/2015 12:27;"";"";Non
+72;ASI;Tâche;#55;En cours;Normal;DSD CU8-CU10;Hugues Verlin;"";02/12/2015 13:04;"";"";24/11/2015;25/11/2015;8,00;2,00;80;17/11/2015 11:27;"";"";Non
+101;ASI;Tâche;#72;Terminée;Normal;DSD CU8;Hugues Verlin;"";02/12/2015 13:03;"";"";24/11/2015;25/11/2015;2,00;1,50;80;21/11/2015 12:28;"";"";Non
+102;ASI;Tâche;#72;En cours;Normal;DSD CU10;Hugues Verlin;"";02/12/2015 13:04;"";"";24/11/2015;25/11/2015;4,00;2,00;80;21/11/2015 12:28;"";"";Non
+103;ASI;Tâche;#72;Terminée;Normal;DSD CU9;Hugues Verlin;"";02/12/2015 13:04;"";"";24/11/2015;25/11/2015;2,00;1,50;80;21/11/2015 12:28;"";"";Non
+56;ASI;Tâche;#45;En cours;Normal;Diagramme de collaboration;Hugues Verlin;"";01/12/2015 16:31;"";"";27/11/2015;27/11/2015;4,00;2,00;80;17/11/2015 10:32;"";"";Non
+57;ASI;Tâche;#45;Terminée;Normal;Spécification SMA + SOM;Hugues Verlin;"";01/12/2015 16:30;"";"";24/11/2015;27/11/2015;4,00;4,50;80;17/11/2015 10:33;"";"";Non
+46;ASI;Tâche;"";Validée;Normal;Architecture technique;Hugues Verlin;"";01/12/2015 16:30;"";"";17/11/2015;04/12/2015;4,00;6,50;100;17/11/2015 10:00;01/12/2015 16:30;"";Non
+47;ASI;Tâche;"";En cours;Normal;Finalisation;Hugues Verlin;"";02/12/2015 13:12;"";"";24/11/2015;04/12/2015;12,50;0;42;17/11/2015 10:02;"";"";Non
+60;ASI;Tâche;#47;En cours;Normal;Bilan Chef de projet;Hugues Verlin;Hugues Verlin;01/12/2015 16:29;"";"";27/11/2015;04/12/2015;4,00;0;50;17/11/2015 10:37;"";"";Non
+59;ASI;Tâche;#47;À faire;Normal;Préparation Présentation;Hugues Verlin;"";17/11/2015 10:38;"";"";27/11/2015;04/12/2015;4,00;0,50;0;17/11/2015 10:36;"";"";Non
+58;ASI;Tâche;#47;En cours;Normal;Intégration;Hugues Verlin;"";02/12/2015 13:12;"";"";24/11/2015;03/12/2015;4,50;0;73;17/11/2015 10:36;"";"";Non
+104;ASI;Tâche;#58;Validée;Normal;Script génération diagrammes;Hugues Verlin;Paul Dautry;21/11/2015 15:08;"";"";24/11/2015;24/11/2015;0,50;1,50;100;21/11/2015 12:30;21/11/2015 15:08;"";Non
+107;ASI;Tâche;#58;En cours;Normal;Réalisation du rapport;Hugues Verlin;Hugues Verlin;02/12/2015 13:12;"";"";27/11/2015;03/12/2015;4,00;7,00;70;26/11/2015 17:43;"";"";Non
+48;ASI;Tâche;"";En cours;Normal;Présentation;Hugues Verlin;"";02/12/2015 16:33;"";"";01/12/2015;04/12/2015;0,50;0;70;17/11/2015 10:03;"";"";Non
+73;ASI;Tâche;"";En cours;Normal;Gestion de projet;Hugues Verlin;Hugues Verlin;01/12/2015 16:31;"";"";17/11/2015;04/12/2015;12,00;8,50;80;17/11/2015 12:00;"";"";Non
