@@ -21,7 +21,7 @@ show: rapport.pdf
 	fi
 
 clean:
-	rm -f *.toc *.log *.aux *.tdo
+	rm -f *.toc *.log *.aux *.tdo *.tof *.lot
 
 cleanAll: clean
 	rm -f *.pdf
