@@ -32,3 +32,12 @@ proguard/
 # Android Studio captures folder
 captures/
 
+*.pdf
+*.aux
+*.toc
+*.tdo
+*.lot
+*.lof
+*.out
+*.log
+*.csv
