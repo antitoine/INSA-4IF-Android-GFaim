@@ -7,7 +7,7 @@
 \begin{document}
 \includepdf[pages={1}]{title.pdf}
 
-\listoftodos[Modifications du rapport]
+%\listoftodos[Modifications du rapport]
 \newpage
 \tableofcontents
 {%
@@ -25,13 +25,16 @@
 
 \newpage
 \addcontentsline{toc}{part}{Introduction}
-\chapter*{Introduction}
-\section*{Présentation du contenu du rapport}
+\chapter{Introduction}
+\section{Présentation du contenu du rapport}
 
 \newpage
 \addcontentsline{toc}{part}{Spécifications}
 \chapter{Spécifications}
-\section{Hello world !}
+
+\include{spec_requises}
+\include{spec_minimales}
+\include{spec_spec}
 
 %%% End document
 \end{document}
