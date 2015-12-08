@@ -1,2 +1,42 @@
-\section{Spécifications Spécifiques}
+\section{Spécifications Avancées}
 
+3a. L'application prend en compte différents types d'utilisateurs. \\
+Il y a deux profils principaux : le profil consommateur, qui inclue les étudiants du campus, les professeurs, les employés, etc., et le profil restaurateur, identique au profil consommateur à cela près qu'il peut administrer la page de son restaurant. \\
+Fonctionnalités principales du profil consommateur : accéder à la liste des restaurants à proximité et consulter leur détail (photos, menu, distance, temps d'attente, avis d'autres consommateurs...), voir les restaurants alentours sur une carte, régler des alarmes à une heure donnée pour le prévenir de l'état des indicateurs de certains restaurants. \\
+Fonctionnalités principales du profil restaurateur : les mêmes que celles du profil consommateur, avec une fonctionnalité principale supplémentaire : administrer la page de son propre restaurant.\\
+
+3b. L'application prend en compte différents types de restaurants.\\
+Lors de la recherche et de l'affichage de restaurants, il est possible de les trier selon leur type : restaurant, restaurant universitaire, restaurant-bar...
+
+4. L'application s'adapte aux différents types d'utilisateurs.\\
+
+Consommateur : \\
+\begin{table}[H]
+    \centering
+    \caption{Tableau des spécifications avancées du consommateur}
+    \label{min-spec-table}
+    \begin{tabular}{p{8cm}|p{8cm}}
+ 	\bf{Spécification} & \bf{Justification} \\ \hline
+		Le consommateur peut accéder rapidement à tous les restaurants alentours grâce au menu, section "Restaurants". & L'intérêt principal de l'application pour le consommateur est de consulter les restaurants à proximité. \\ \hline
+		Le consommateur peut rechercher un restaurant, soit directement avec son nom s'il le connaît, soit en indiquant des critères de recherche (temps d'attente, distance, etc.) pour une recherche avancée. & Cela permet au consommateur d'accéder rapidement à un/des restaurant(s) selon ce qu'il souhaite : obtenir l'état d'un restaurant précis, ou bien trouver un restaurant où il pourrait manger selon des critères qu'il aura définis. \\ \hline
+		Le consommateur peut consulter les détails du restaurant, ce qui permet d'avoir une vue plus détaillée d'un restaurant choisi, notamment avec les avis d'autres utilisateurs et une mini-vue carte. & Ceci apporte un accès rapide aux indicateurs du restaurant, tout en gardant une vue compacte (certaines autres fonctionnalités étant accessible depuis cette vue). \\ \hline
+		Depuis la vue détaillée du restaurant, le consommateur peut accéder à certaines autres fonctionnalités : photos du restaurant, téléphone, lien vers son site internet, laisser un avis, ajouter aux favoris, voir le menu. & Mettre toutes ces fonctionnalités directement dans la vue détaillée du restaurant aurait conduit à une page très remplie et peu lisible, d'où le choix de proposer d'y accéder seulement si le consommateur le souhaite. \\ \hline
+		Le consommateur peut se repérer et voir les restaurants alentours à tout instant grâce au menu, section "Carte". & Le consommateur peut vouloir repérer un restaurant à proximité d'un endroit où il souhaite aller avant ou après manger. \\ \hline
+		Le consommateur peut programmer une alarme pour être prévenu de l'état des indicateurs de certains restaurants, grâce à une notification, et donc sans avoir à ouvrir l'application. & La rapidité de l'accès à l'information est un critère primordial pour ce type d'application. \\
+    \end{tabular}
+\end{table}
+
+Restaurateur : \\
+
+\begin{table}[H]
+    \centering
+    \caption{Tableau des spécifications avancées du restaurateur}
+    \label{min-spec-table}
+    \begin{tabular}{p{8cm}|p{8cm}}
+        \bf{Spécification} & \bf{Justification} \\ \hline
+Le restaurateur peut changer les informations générales de son restaurant : numéro de téléphone, adresse... & Il est utile que le consommateur soit informé rapidement de tels changements. \\ \hline
+Le restaurateur peut ajouter des photos de son propre restaurant. & Il est intéressant pour le consommateur de voir à quoi ressemble le restaurant pour s'en faire une idée. \\ \hline
+Le restaurateur peut ajouter le menu de son restaurant. & Le consommateur peut vouloir consulter ce qu'il y a à manger au restaurant sans avoir à y aller. \\ \hline
+Le restaurateur n'a pas besoin de renseigner le temps d'attente dans son restaurant : cela est fait en temps réel grâce à un système annexe. & Entrer les temps d'attente à la main pourrait être faussé, incomplet et peu précis. \\
+    \end{tabular}
+\end{table}
