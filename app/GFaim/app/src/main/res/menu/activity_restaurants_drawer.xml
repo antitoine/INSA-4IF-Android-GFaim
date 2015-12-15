@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/nav_group_actions">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_restaurants"
+            android:icon="@drawable/ic_menu_restaurants"
             android:title="Restaurants" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_menu_map"
             android:title="Carte" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_alarms"
+            android:icon="@drawable/ic_menu_alarms"
             android:title="Alarmes" />
     </group>
 
-    <item>
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Personnaliser" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Gérer mes restaurants" />
-        </menu>
-    </item>
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/nav_group_settings">
+        <item
+            android:id="@+id/nav_manage_restaurants"
+            android:icon="@drawable/ic_menu_restaurants_settings"
+            android:title="Gérer mes restaurants" />
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="Personnaliser" />
+    </group>
 
 </menu>
