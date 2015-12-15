@@ -1,17 +1,13 @@
 package fr.insa.h4401.gfaim;
 
-import android.app.ExpandableListActivity;
-import android.app.Fragment;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import fr.insa.h4401.gfaim.R;
 
 /**
  * Pieced together from:
@@ -20,7 +16,7 @@ import fr.insa.h4401.gfaim.R;
  * http://stackoverflow.com/questions/6938560/android-fragments-setcontentview-alternative
  * http://stackoverflow.com/questions/6495898/findviewbyid-in-fragment-android
  */
-public class AlarmSettings extends Fragment {
+public class AlarmSettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,14 +74,14 @@ public class AlarmSettings extends Fragment {
 
         @Override
         public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-            TextView textView = new TextView(AlarmSettings.this.getActivity());
+            TextView textView = new TextView(AlarmSettingsFragment.this.getActivity());
             textView.setText(getGroup(i).toString());
             return textView;
         }
 
         @Override
         public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-            TextView textView = new TextView(AlarmSettings.this.getActivity());
+            TextView textView = new TextView(AlarmSettingsFragment.this.getActivity());
             textView.setText(getChild(i, i1).toString());
             return textView;
         }

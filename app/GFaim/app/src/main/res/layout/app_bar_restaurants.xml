@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/details_restaurant" />
+    <include layout="@layout/content_restaurants" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
