@@ -1,0 +1,195 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentsRestaurateur.InfoRestaurateurFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:baselineAligned="false"
+        android:paddingLeft="16dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nom_resto"
+                android:layout_column="2"
+                android:text="Astrée"
+                android:layout_marginLeft="50dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView7"
+                android:layout_column="0"
+                android:background="@drawable/ic_phone" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/editText3"
+                android:layout_column="2"
+                android:text="+33783704380"
+                android:layout_marginLeft="50dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView3"
+                android:layout_column="0"
+                android:background="@drawable/ic_address"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:layout_column="2"
+                android:text="Av. Gaston Berger 111"
+                android:layout_marginLeft="50dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:layout_column="0"
+                android:background="@drawable/ic_clock"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Lundi - Vendredi"
+                android:id="@+id/textView2"
+                android:layout_column="2"
+                android:layout_marginLeft="50dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView5"
+                android:layout_column="13"
+                android:background="@drawable/ic_edit" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="10h30 - 20h00"
+                android:id="@+id/textView3"
+                android:layout_column="2"
+                android:layout_marginLeft="50dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView4"
+                android:layout_column="0"
+                android:background="@drawable/ic_web" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:layout_column="2"
+                android:text="www.astree-resto.fr"
+                android:layout_marginLeft="50dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch1"
+                android:layout_column="2"
+                android:checked="false"
+                android:clickable="false"
+                android:layout_marginLeft="50dp"
+                android:text="À emporter" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch2"
+                android:layout_column="2"
+                android:checked="true"
+                android:clickable="false"
+                android:layout_marginLeft="50dp"
+                android:text="Carte Bleue" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch3"
+                android:layout_column="2"
+                android:checked="false"
+                android:clickable="false"
+                android:layout_marginLeft="50dp"
+                android:text="Fumer" />
+        </TableRow>
+    </TableLayout>
+
+</FrameLayout>

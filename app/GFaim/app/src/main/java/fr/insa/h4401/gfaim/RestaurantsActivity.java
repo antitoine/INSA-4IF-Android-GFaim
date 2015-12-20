@@ -1,5 +1,6 @@
 package fr.insa.h4401.gfaim;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -87,9 +88,12 @@ public class RestaurantsActivity extends AppCompatActivity
         Fragment fragment = null;
         if (id == R.id.nav_alarms) {
             fragment = new AlarmSettingsFragment();
-        } else {
+        } else if (id == R.id.nav_manage_restaurants) {
+            Intent myIntent = new Intent(RestaurantsActivity.this, RestaurateurActivity.class);
+            RestaurantsActivity.this.startActivity(myIntent);
             fragment = new DetailsRestaurantFragment();
-        }
+        } else {
+            fragment = new DetailsRestaurantFragment();        }
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_content, fragment)
                 .commit();
