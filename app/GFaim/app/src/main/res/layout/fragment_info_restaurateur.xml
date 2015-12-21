@@ -10,12 +10,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:baselineAligned="false"
-        android:paddingLeft="16dp">
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
+            android:layout_height="match_parent">
 
             <EditText
                 android:layout_width="wrap_content"
@@ -23,30 +23,6 @@
                 android:id="@+id/nom_resto"
                 android:layout_column="2"
                 android:text="Astrée"
-                android:layout_marginLeft="50dp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView7"
-                android:layout_column="0"
-                android:background="@drawable/ic_phone" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:ems="10"
-                android:id="@+id/editText3"
-                android:layout_column="2"
-                android:text="+33783704380"
                 android:layout_marginLeft="50dp" />
 
         </TableRow>

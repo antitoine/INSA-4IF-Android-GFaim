@@ -1,9 +1,12 @@
 package fr.insa.h4401.gfaim;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -24,6 +27,8 @@ import fr.insa.h4401.gfaim.FragmentsRestaurateur.ContactRestaurateurFragment;
 import fr.insa.h4401.gfaim.FragmentsRestaurateur.InfoRestaurateurFragment;
 import fr.insa.h4401.gfaim.FragmentsRestaurateur.MenuRestaurateurFragment;
 import fr.insa.h4401.gfaim.FragmentsRestaurateur.PhotosRestaurateurFragment;
+
+import static fr.insa.h4401.gfaim.R.*;
 
 public class RestaurateurActivity extends AppCompatActivity {
 
@@ -46,19 +51,19 @@ public class RestaurateurActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurateur);
+        setContentView(layout.activity_restaurateur);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
      /*   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
