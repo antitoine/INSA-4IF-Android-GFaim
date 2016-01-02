@@ -86,14 +86,24 @@ public class RestaurantsActivity extends AppCompatActivity
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = null;
-        if (id == R.id.nav_alarms) {
-            fragment = new AlarmSettingsFragment();
-        } else if (id == R.id.nav_manage_restaurants) {
-            Intent myIntent = new Intent(RestaurantsActivity.this, RestaurateurActivity.class);
-            RestaurantsActivity.this.startActivity(myIntent);
-            fragment = new DetailsRestaurantFragment();
-        } else {
-            fragment = new DetailsRestaurantFragment();        }
+        switch (id) {
+            case R.id.nav_alarms:
+                fragment = new AlarmSettingsFragment();
+                break;
+
+            case R.id.nav_map:
+                fragment = new MapFragment();
+                break;
+
+            case R.id.nav_manage_restaurants:
+                Intent myIntent = new Intent(RestaurantsActivity.this, RestaurateurActivity.class);
+                RestaurantsActivity.this.startActivity(myIntent);
+                fragment = new DetailsRestaurantFragment();
+                break;
+            default:
+                fragment = new DetailsRestaurantFragment();
+                break;
+        }
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_content, fragment)
                 .commit();
