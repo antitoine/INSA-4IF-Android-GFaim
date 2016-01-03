@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_id": "android-gfaim",
+    "project_number": "198806745527",
+    "name": "Android-GFaim"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198806745527:android:bd1b6e723a40f390",
+        "client_id": "android:fr.insa.h4401.gfaim",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "fr.insa.h4401.gfaim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198806745527-on0i9tnem8iknkka8dq9te1jsr3tdims.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.insa.h4401.gfaim",
+            "certificate_hash": "C81C716795D22EDCCA28B4AB356EE7F941AF09A5"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
