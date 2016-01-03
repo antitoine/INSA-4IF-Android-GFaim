@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +41,11 @@ public class RestaurantsActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_content, new RestaurantsFragment())
+                .commit();
+
     }
 
     @Override
@@ -59,13 +66,10 @@ public class RestaurantsActivity extends AppCompatActivity
         // Mise à jour du menu avec les informations de connexion
         GoogleSignInAccount acct = ConnectionActivity.getGoogleSignInAccount();
 
+        ((TextView) findViewById(R.id.menu_account_name)).setText(acct.getDisplayName());
+        ((TextView) findViewById(R.id.menu_account_email)).setText(acct.getEmail());
 
         try {
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
-            ((TextView) findViewById(R.id.menu_account_name)).setText(acct.getDisplayName());
-            ((TextView) findViewById(R.id.menu_account_email)).setText(acct.getEmail());
-
             URL url = new URL(acct.getPhotoUrl().toString());
             RoundImage bmp = new RoundImage(new BitmapGetter().execute(url).get());
 
@@ -74,7 +78,10 @@ public class RestaurantsActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        return true;
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -102,6 +109,10 @@ public class RestaurantsActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = null;
         switch (id) {
+            case R.id.nav_restaurants:
+                fragment = new RestaurantsFragment();
+                break;
+
             case R.id.nav_alarms:
                 fragment = new AlarmSettingsFragment();
                 break;
