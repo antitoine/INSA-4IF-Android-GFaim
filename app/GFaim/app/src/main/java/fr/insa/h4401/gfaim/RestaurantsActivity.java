@@ -41,6 +41,11 @@ public class RestaurantsActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_content, new RestaurantsFragment())
+                .commit();
+
     }
 
     @Override
@@ -104,6 +109,10 @@ public class RestaurantsActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = null;
         switch (id) {
+            case R.id.nav_restaurants:
+                fragment = new RestaurantsFragment();
+                break;
+
             case R.id.nav_alarms:
                 fragment = new AlarmSettingsFragment();
                 break;
