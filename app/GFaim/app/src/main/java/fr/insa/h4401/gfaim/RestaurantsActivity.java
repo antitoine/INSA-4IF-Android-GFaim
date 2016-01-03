@@ -146,6 +146,7 @@ public class RestaurantsActivity extends AppCompatActivity
     }
 
     private void signOut() {
+        ConnectionActivity.requireSignOut();
         Intent myIntent = new Intent(RestaurantsActivity.this, ConnectionActivity.class);
         startActivity(myIntent);
     }

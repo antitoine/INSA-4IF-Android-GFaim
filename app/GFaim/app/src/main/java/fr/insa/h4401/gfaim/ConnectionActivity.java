@@ -22,6 +22,8 @@ public class ConnectionActivity extends AppCompatActivity implements GoogleApiCl
 
     private final static int RC_SIGN_IN = 1;
 
+    private static boolean decoRequired = false;
+
 
 
     @Override
@@ -125,15 +127,20 @@ public class ConnectionActivity extends AppCompatActivity implements GoogleApiCl
     }
 
     private void signOut() {
-        if (mGoogleApiClient.isConnected()) {
+        if (mGoogleApiClient.isConnected() && decoRequired) {
             Auth.GoogleSignInApi.signOut(mGoogleApiClient);
             Log.d("CONNECTION", "sign out");
         }
     }
 
+    public static void requireSignOut() {
+        decoRequired = true;
+    }
+
     @Override
     public void onConnected(Bundle bundle) {
         Log.d("CONNECTION", "Connected");
+
         signOut();
     }
 
