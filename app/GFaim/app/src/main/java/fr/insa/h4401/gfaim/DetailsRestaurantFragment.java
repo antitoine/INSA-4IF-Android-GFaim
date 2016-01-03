@@ -1,5 +1,9 @@
 package fr.insa.h4401.gfaim;
 
+
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;

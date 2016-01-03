@@ -59,12 +59,13 @@ public class RestaurantsActivity extends AppCompatActivity
         // Mise à jour du menu avec les informations de connexion
         GoogleSignInAccount acct = ConnectionActivity.getGoogleSignInAccount();
 
-        String personId = acct.getId();
-        Uri personPhoto = acct.getPhotoUrl();
-        ((TextView) findViewById(R.id.menu_account_name)).setText(acct.getDisplayName());
-        ((TextView) findViewById(R.id.menu_account_email)).setText(acct.getEmail());
 
         try {
+            String personId = acct.getId();
+            Uri personPhoto = acct.getPhotoUrl();
+            ((TextView) findViewById(R.id.menu_account_name)).setText(acct.getDisplayName());
+            ((TextView) findViewById(R.id.menu_account_email)).setText(acct.getEmail());
+
             URL url = new URL(acct.getPhotoUrl().toString());
             RoundImage bmp = new RoundImage(new BitmapGetter().execute(url).get());
 
