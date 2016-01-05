@@ -9,15 +9,27 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:id="@+id/list_restaurants">
 
-            <!-- cardview_restaurant_layout.xml added in ManageRestaurantsFragment.java -->
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:id="@+id/list_restaurants">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Mes restaurants"
+                    android:id="@+id/textView15"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center_horizontal" />
+                <!-- cardview_restaurant_layout.xml added in ManageRestaurantsFragment.java -->
+
+            </LinearLayout>
+
+
     </ScrollView>
 
 
