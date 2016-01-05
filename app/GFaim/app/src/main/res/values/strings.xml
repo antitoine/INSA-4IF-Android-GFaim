@@ -41,4 +41,11 @@
     <string name="min">min</string>
     <string name="Pierre">Pierre Jarsaillon</string>
 
+    <string-array name="regimes">
+        <item>Pas de régime</item>
+        <item>Végétarien</item>
+        <item>Végétalien</item>
+        <item>Sans Porc</item>
+    </string-array>
+
 </resources>
