@@ -88,14 +88,10 @@ public class MapFragment extends Fragment {
         Marker currentPosition = MarkerFactory.getCurrentLocationMarker(map);
 
         // Restaurants
-        Restaurant snackCampus = new Restaurant(
-                45.777154, 4.874535, "Snack du campus", 4, 3, "Ouvert", "Prix correct", 7, 7
-        );
+        Restaurant snackCampus = RestaurantFactory.getRestaurant(RestaurantFactory.name.SNACK_CAMPUS);
         Marker snackCampusMarker = MarkerFactory.getRestaurantMarker(map, snackCampus);
 
-        Restaurant grandRU = new Restaurant(
-                45.780901, 4.876403, "Restau U", 2, 10, "Ouvert", "Prix bas", 12, 5
-        );
+        Restaurant grandRU = RestaurantFactory.getRestaurant(RestaurantFactory.name.GRAND_RU);
         Marker grandRUmarker = MarkerFactory.getRestaurantMarker(map, grandRU);
 
 

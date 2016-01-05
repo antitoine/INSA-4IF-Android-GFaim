@@ -2,9 +2,8 @@ package fr.insa.h4401.gfaim;
 
 import org.osmdroid.util.GeoPoint;
 
-/**
- * Created by Pierre on 31/12/2015.
- */
+import java.util.HashMap;
+
 public class Restaurant {
 
     private GeoPoint mLocation;
@@ -15,6 +14,8 @@ public class Restaurant {
     private String mPrice;
     private int mWaitingDuration;
     private int mRouteDuration;
+
+
 
     public Restaurant(double latitude, double longitude, String title, float rating, int nbRates, String status, String price, int waitingDuration, int routeDuration) {
         this.mLocation = new GeoPoint(latitude, longitude);
