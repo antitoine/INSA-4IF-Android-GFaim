@@ -13,15 +13,15 @@ public abstract class RestaurantFactory {
         if(restaurantsList.isEmpty()) {
             restaurantsList.put(name.SNACK_CAMPUS, new Restaurant(
                     name.SNACK_CAMPUS.toString(), 45.777154, 4.874535, "Snack du campus", 4, 3, "Ouvert", "5 à 10 €", 7, 7, R.drawable.snack_campus,
-                    "Snack / Tacos"));
+                    "Snack / Tacos", false));
 
             restaurantsList.put(name.GRAND_RU,  new Restaurant(
                     name.GRAND_RU.toString(), 45.780901, 4.876403, "Restau U", 2, 10, "Ouvert", "Moins de 6 €", 12, 5, R.drawable.restau_u,
-                    "Restaurant Universitaire"));
+                    "Restaurant Universitaire", false));
 
             restaurantsList.put(name.GRILLON,  new Restaurant(
                     name.GRILLON.toString(), 45.78385655, 4.87506643, "Le Grillon", 3, 15, "Ouvert", "Moins de 6 €", 10, 4, R.drawable.grillon,
-                    "Self - Grillades"));
+                    "Self - Grillades", false));
         }
         return restaurantsList;
     }

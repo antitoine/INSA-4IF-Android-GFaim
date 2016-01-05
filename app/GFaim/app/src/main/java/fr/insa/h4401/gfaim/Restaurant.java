@@ -15,11 +15,13 @@ public class Restaurant {
     private int mRouteDuration;
     private int mImageResource;
     private String type;
+    private boolean favorite;
 
 
-    public Restaurant(String nameId, double latitude, double longitude, String title, float rating, int nbRates, String status, String price, int waitingDuration, int routeDuration, int imageResource, String type) {
+    public Restaurant(String nameId, double latitude, double longitude, String title, float rating, int nbRates, String status, String price, int waitingDuration, int routeDuration, int imageResource, String type, boolean favorite) {
         this.mNameId = nameId;
         this.type = type;
+        this.favorite = favorite;
         this.mLocation = new GeoPoint(latitude, longitude);
         this.mTitle = title;
         this.mRating = rating;
@@ -77,5 +79,13 @@ public class Restaurant {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

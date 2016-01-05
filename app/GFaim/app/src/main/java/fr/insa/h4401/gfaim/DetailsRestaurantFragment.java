@@ -13,6 +13,7 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -41,6 +42,7 @@ public class DetailsRestaurantFragment extends Fragment {
 
     private RestaurantFactory.name mRestaurant;
     private OnFragmentInteractionListener mListener;
+    private ImageView starIcon;
 
     public DetailsRestaurantFragment() {
         // Required empty public constructor
@@ -71,7 +73,7 @@ public class DetailsRestaurantFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.details_restaurant, null);
 
-        Restaurant resto = RestaurantFactory.getRestaurant(mRestaurant);
+        final Restaurant resto = RestaurantFactory.getRestaurant(mRestaurant);
 
         TextView RestaurantTitle = (TextView) v.findViewById(R.id.restaurant_detail_name);
         RestaurantTitle.setText(resto.getTitle());
@@ -119,11 +121,20 @@ public class DetailsRestaurantFragment extends Fragment {
             }
         });
 
+        starIcon = (ImageView) v.findViewById(R.id.star);
         fab_star = (FloatingActionButton) v.findViewById(R.id.fab_star);
         fab_star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(resto.isFavorite()){
+                    starIcon.setImageResource(R.drawable.ic_star_outline_24dp);
+                    fab_star.setLabelText("Ajouter aux favoris");
+                    resto.setFavorite(false);
+                } else {
+                    starIcon.setImageResource(R.drawable.ic_star_24dp);
+                    fab_star.setLabelText("Retirer des favoris");
+                    resto.setFavorite(true);
+                }
             }
         });
 
