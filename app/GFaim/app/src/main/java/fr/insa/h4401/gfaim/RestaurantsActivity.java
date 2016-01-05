@@ -45,6 +45,7 @@ public class RestaurantsActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
+                .add(new MapFragment(), null)
                 .replace(R.id.frame_content, new RestaurantsFragment())
                 .commit();
 
