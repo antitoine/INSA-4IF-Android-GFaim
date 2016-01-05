@@ -113,12 +113,13 @@ public class ConnectionActivity extends AppCompatActivity implements GoogleApiCl
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             mGoogleSignInAccount = acct;
-            Intent intent = new Intent(ConnectionActivity.this, RestaurantsActivity.class);
-            startActivity(intent);
+
         } else {
             signOut();
             Log.d("CONNECTION", "Error connection : " + result.getStatus().toString());
         }
+        Intent intent = new Intent(ConnectionActivity.this, RestaurantsActivity.class);
+        startActivity(intent);
 
     }
 

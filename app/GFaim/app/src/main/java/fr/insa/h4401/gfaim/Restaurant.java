@@ -14,10 +14,12 @@ public class Restaurant {
     private int mWaitingDuration;
     private int mRouteDuration;
     private int mImageResource;
+    private String type;
 
 
-    public Restaurant(String nameId, double latitude, double longitude, String title, float rating, int nbRates, String status, String price, int waitingDuration, int routeDuration, int imageResource) {
+    public Restaurant(String nameId, double latitude, double longitude, String title, float rating, int nbRates, String status, String price, int waitingDuration, int routeDuration, int imageResource, String type) {
         this.mNameId = nameId;
+        this.type = type;
         this.mLocation = new GeoPoint(latitude, longitude);
         this.mTitle = title;
         this.mRating = rating;
@@ -67,5 +69,13 @@ public class Restaurant {
 
     public String getNameId() {
         return mNameId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

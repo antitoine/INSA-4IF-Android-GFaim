@@ -6,10 +6,11 @@
 
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
-    <string name="type">• Type : Kebab/Tacos</string>
-    <string name="price">• Prix : ~ 5 – 8 €</string>
-    <string name="time">• Horaires : Aujourd\'hui : 11h - 15h</string>
-    <string name="timeToWait">• Temps d\'attente : 10 min</string>
+    <string name="type">• Type : </string>
+    <string name="price">• Prix : </string>
+    <string name="status">• Statut : </string>
+    <string name="schedule">• Horaires : </string>
+    <string name="timeToWait">• Temps d\'attente : </string>
     <string name="Events">Evenements</string>
     <string name="feedback">Avis</string>
     <string name="description">Description</string>
@@ -28,11 +29,16 @@
     <string name="restaurantName">Tacos du campus</string>
     <string name="carte">Carte</string>
     <string name="avis1">Bon tacos mais dommage qu\'il ne soit pas plus light !</string>
-    <string name="johnDoe">John Doe</string>
+    <string name="avis2">Excellent ! J'y vais tous les jours ! </string>
+    <string name="avis3">Bof bof bof ! On a vu mieux, n'est-ce pas ? </string>
+    <string name="Estelle">Estelle Lepeigneux</string>
     <string name="presentation">Présentation</string>
     <string name="eventDescription">Soirée barbecue au tacos ! Venez Nombreux mes petits canards !</string>
     <string name="dateEvent">Samedi 16 janvier</string>
     <string name="eventTitle">Soirée tacos</string>
     <string name="dash"> - </string>
+    <string name="avis">avis</string>
+    <string name="min">min</string>
+    <string name="Pierre">Pierre Jarsaillon</string>
 
 </resources>

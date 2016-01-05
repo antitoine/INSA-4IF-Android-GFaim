@@ -5,14 +5,19 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 /**
@@ -70,8 +75,35 @@ public class DetailsRestaurantFragment extends Fragment {
 
         mFloatingMenu = (FloatingActionsMenu) v.findViewById(R.id.actionButton);
 
+        Restaurant resto = RestaurantFactory.getRestaurant(mRestaurant);
+
         TextView RestaurantTitle = (TextView) v.findViewById(R.id.restaurant_detail_name);
-        RestaurantTitle.setText(RestaurantFactory.getRestaurant(mRestaurant).getTitle());
+        RestaurantTitle.setText(resto.getTitle());
+
+        RatingBar ratingBar = (RatingBar) v.findViewById(R.id.restaurant_detail_rating);
+        ratingBar.setRating(resto.getRating());
+
+        Drawable progressDrawable = ratingBar.getProgressDrawable();
+       // drawable.setColorFilter(Color.parseColor("white"), PorterDuff.Mode.SRC_ATOP);
+        DrawableCompat.setTint(progressDrawable, Color.WHITE);
+
+
+        TextView nbRates = (TextView) v.findViewById(R.id.restaurant_details_nb_rates);
+        nbRates.setText(Integer.toString(resto.getNbRates()));
+
+        TextView status = (TextView) v.findViewById(R.id.restaurant_detail_time);
+        status.setText(resto.getStatus());
+
+        TextView price = (TextView) v.findViewById(R.id.restaurant_detail_price);
+        price.setText(resto.getPrice());
+
+        TextView timeToWait = (TextView) v.findViewById(R.id.restaurant_detail_waitingTime);
+        timeToWait.setText(Integer.toString(resto.getWaitingDuration()));
+
+        TextView type = (TextView) v.findViewById(R.id.restaurant_detail_type);
+        type.setText(resto.getType());
+
+
 
         return v;
     }
@@ -82,23 +114,6 @@ public class DetailsRestaurantFragment extends Fragment {
             //mListener.onFragmentInteraction(uri);
         }
     }
-
-
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent event) {
-//        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//            if (mFloatingMenu.isExpanded()) {
-//
-//                Rect outRect = new Rect();
-//                mFloatingMenu.getGlobalVisibleRect(outRect);
-//
-//                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY()))
-//                    mFloatingMenu.collapse();
-//            }
-//        }
-//
-//        return true;//super.dispatchTouchEvent(event);
-//    }
 
 
     @Override

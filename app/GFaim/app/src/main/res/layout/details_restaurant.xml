@@ -39,8 +39,9 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:layout_marginBottom="10dp"
-            android:paddingStart="2dp"
-            android:paddingEnd="0dp">
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,10 +52,45 @@
                 android:textSize="20sp"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginStart="3dp"/>
+                android:layout_marginTop="3dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RatingBar
+                    android:id="@+id/restaurant_detail_rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:numStars="@integer/restaurant_rating_num"
+                    android:rating="4" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/restaurant_details_nb_rates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="3dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="@string/avis" />
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
+
 
         <LinearLayout
             android:orientation="vertical"
@@ -69,24 +105,84 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/presentation" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/type"/>
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/price" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/type"/>
 
-            <TextView
+                <TextView
+                    android:id="@+id/restaurant_detail_type"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/time"/>
-            <TextView
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price" />
+
+                <TextView
+                    android:id="@+id/restaurant_detail_price"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="5dp"
+
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/timeToWait" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/status"/>
+
+                <TextView
+                    android:id="@+id/restaurant_detail_time"
+                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/timeToWait" />
+
+                <TextView
+                    android:id="@+id/restaurant_detail_waitingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/min" />
+            </LinearLayout>
+
+
 
             <View
                 android:layout_width="fill_parent"
@@ -137,15 +233,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/eventTitle"
+                                android:layout_marginEnd="3dp"
                                 android:textStyle="bold"/>
-                            <TextView
-                                android:id="@+id/date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/dash" />
 
                             <TextView
-                                android:id="@+id/date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dash"
+                                android:layout_marginEnd="3dp" />
+
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/dateEvent"
@@ -208,7 +305,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/johnDoe" />
+                            android:text="@string/Estelle" />
 
                         <TextView
                             android:maxLines="10"
@@ -247,19 +344,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:numStars="@integer/restaurant_rating_num"
-                            android:rating="4" />
+                            android:rating="2" />
 
                         <TextView
                             android:id="@+id/textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/johnDoe" />
+                            android:text="@string/Pierre" />
 
                         <TextView
                             android:maxLines="10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/avis1" />
+                            android:text="@string/avis3" />
 
                     </LinearLayout>
                 </LinearLayout>
