@@ -5,10 +5,12 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -22,14 +24,14 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class DetailsRestaurantFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String RESTAURANT = "restaurant";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RestaurantFactory.name mRestaurant;
+    private FloatingActionsMenu mFloatingMenu;
 
     private OnFragmentInteractionListener mListener;
 
@@ -41,16 +43,14 @@ public class DetailsRestaurantFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param String Restaurant
      * @return A new instance of fragment DetailsRestaurantFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DetailsRestaurantFragment newInstance(String param1, String param2) {
+    public static DetailsRestaurantFragment newInstance(String restaurant) {
         DetailsRestaurantFragment fragment = new DetailsRestaurantFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(RESTAURANT, restaurant);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,8 +59,7 @@ public class DetailsRestaurantFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mRestaurant = RestaurantFactory.name.valueOf(getArguments().getString(RESTAURANT));
         }
     }
 
@@ -68,6 +67,12 @@ public class DetailsRestaurantFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.details_restaurant, null);
+
+        mFloatingMenu = (FloatingActionsMenu) v.findViewById(R.id.actionButton);
+
+        TextView RestaurantTitle = (TextView) v.findViewById(R.id.restaurant_detail_name);
+        RestaurantTitle.setText(RestaurantFactory.getRestaurant(mRestaurant).getTitle());
+
         return v;
     }
 
@@ -77,6 +82,24 @@ public class DetailsRestaurantFragment extends Fragment {
             //mListener.onFragmentInteraction(uri);
         }
     }
+
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent event) {
+//        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//            if (mFloatingMenu.isExpanded()) {
+//
+//                Rect outRect = new Rect();
+//                mFloatingMenu.getGlobalVisibleRect(outRect);
+//
+//                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY()))
+//                    mFloatingMenu.collapse();
+//            }
+//        }
+//
+//        return true;//super.dispatchTouchEvent(event);
+//    }
+
 
     @Override
     public void onAttach(Context context) {
