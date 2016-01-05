@@ -4,9 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 
 /**
@@ -17,7 +23,7 @@ import android.view.ViewGroup;
  * Use the {@link RestaurantsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RestaurantsFragment extends Fragment {
+public class RestaurantsFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +36,7 @@ public class RestaurantsFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public RestaurantsFragment() {
-        // Required empty public constructor
+
     }
 
     /**
@@ -64,7 +70,36 @@ public class RestaurantsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurants, container, false);
+        View view = inflater.inflate(R.layout.fragment_restaurants, container, false);
+
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.list_restaurants);
+
+        // Create the cardview
+        for (Restaurant restaurant : RestaurantFactory.getAllRestaurants()) {
+            linearLayout.addView(createRestaurantCardView(inflater, restaurant));
+        }
+
+        return view;
+    }
+
+    private View createRestaurantCardView(LayoutInflater inflater, Restaurant restaurant) {
+        View cardview_layout = inflater.inflate(R.layout.cardview_restaurant_layout, null);
+        View cardview = cardview_layout.findViewById(R.id.card_view);
+
+        ((TextView) cardview.findViewById(R.id.restaurant_cardview_enum)).setText(restaurant.getNameId());
+
+        ((ImageView) cardview.findViewById(R.id.restaurant_cardview_image)).setImageResource(restaurant.getImageResource());
+        ((TextView) cardview.findViewById(R.id.restaurant_cardview_title)).setText(restaurant.getTitle());
+        ((RatingBar) cardview.findViewById(R.id.restaurant_cardview_rating)).setRating(restaurant.getRating());
+        ((TextView) cardview.findViewById(R.id.restaurant_cardview_nb_rates)).setText(Integer.toString(restaurant.getNbRates()));
+        ((TextView) cardview.findViewById(R.id.restaurant_cardview_price)).setText(restaurant.getPrice());
+        ((TextView) cardview.findViewById(R.id.restaurant_cardview_waiting_duration)).setText(Integer.toString(restaurant.getWaitingDuration()));
+        ((TextView) cardview.findViewById(R.id.restaurant_cardview_route_duration)).setText(Integer.toString(restaurant.getRouteDuration()));
+
+        cardview.setClickable(true);
+        cardview.setOnClickListener(this);
+
+        return cardview_layout;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -90,6 +125,17 @@ public class RestaurantsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v instanceof CardView) {
+            DetailsRestaurantFragment detailsRestaurantFragment = DetailsRestaurantFragment.newInstance(
+                    ((TextView) v.findViewById(R.id.restaurant_cardview_enum)).getText().toString());
+
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.frame_content, detailsRestaurantFragment).commit();
+        }
     }
 
     /**

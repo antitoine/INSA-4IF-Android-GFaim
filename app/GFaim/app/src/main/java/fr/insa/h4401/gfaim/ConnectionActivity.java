@@ -113,13 +113,13 @@ public class ConnectionActivity extends AppCompatActivity implements GoogleApiCl
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             mGoogleSignInAccount = acct;
-
+            Intent intent = new Intent(ConnectionActivity.this, RestaurantsActivity.class);
+            startActivity(intent);
         } else {
-            // Signed out, show unauthenticated UI.
-            //updateUI(false);
+            signOut();
+            Log.d("CONNECTION", "Error connection : " + result.getStatus().toString());
         }
-        Intent intent = new Intent(ConnectionActivity.this, RestaurantsActivity.class);
-        startActivity(intent);
+
     }
 
     public static GoogleSignInAccount getGoogleSignInAccount() {
@@ -130,6 +130,7 @@ public class ConnectionActivity extends AppCompatActivity implements GoogleApiCl
         if (mGoogleApiClient.isConnected() && decoRequired) {
             Auth.GoogleSignInApi.signOut(mGoogleApiClient);
             Log.d("CONNECTION", "sign out");
+            decoRequired = false;
         }
     }
 
