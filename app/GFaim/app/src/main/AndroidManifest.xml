@@ -29,6 +29,7 @@
 
         </activity>
         <activity
+            android:parentActivityName=".RestaurantsActivity"
             android:name=".RestaurateurActivity"
             android:label="@string/title_activity_restaurateur"
             android:theme="@style/AppTheme.NoActionBar" />

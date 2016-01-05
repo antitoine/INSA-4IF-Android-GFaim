@@ -59,6 +59,10 @@ public class RestaurateurActivity extends AppCompatActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
+        try{
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }catch (Exception ignored){}
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);

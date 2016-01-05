@@ -89,6 +89,10 @@ public class RestaurantsActivity extends AppCompatActivity
                 checkedItem = R.id.nav_map;
                 break;
 
+            case R.layout.fragment_settings:
+                checkedItem = R.id.nav_settings;
+                break;
+
             // Todo : Vérifier si des cas ne sont pas manquants
 
             default:
@@ -165,9 +169,11 @@ public class RestaurantsActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_manage_restaurants:
-                Intent myIntent = new Intent(RestaurantsActivity.this, RestaurateurActivity.class);
-                RestaurantsActivity.this.startActivity(myIntent);
-                fragment = new DetailsRestaurantFragment();
+                fragment = new ManageRestaurantsFragment();
+                break;
+
+            case R.id.nav_settings:
+                fragment = new SettingsFragment();
                 break;
 
             case R.id.nav_deco:
@@ -175,7 +181,7 @@ public class RestaurantsActivity extends AppCompatActivity
                 return true;
 
             default:
-                fragment = new DetailsRestaurantFragment();
+                fragment = new RestaurantsFragment();
                 break;
         }
         fragmentManager.beginTransaction()
