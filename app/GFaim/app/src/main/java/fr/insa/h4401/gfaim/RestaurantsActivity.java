@@ -3,8 +3,8 @@ package fr.insa.h4401.gfaim;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -42,9 +43,14 @@ public class RestaurantsActivity extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_restaurants);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
+
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_content, new RestaurantsFragment())
                 .commit();
+
+        fragmentManager.executePendingTransactions();
+
+        Log.d("fragment", Integer.toString(getSupportFragmentManager().getBackStackEntryCount()));
 
     }
 
@@ -54,9 +60,43 @@ public class RestaurantsActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            Log.d("fragment", Integer.toString(fragmentManager.getBackStackEntryCount()));
 
-            super.onBackPressed();
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                updateOptionsMenuSelectedItem(fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getId());
+
+                getSupportFragmentManager().popBackStackImmediate();
+
+            }
         }
+    }
+
+    private void updateOptionsMenuSelectedItem(int idLayout) {
+        int checkedItem = 0;
+
+        switch (idLayout) {
+            case R.layout.fragment_restaurants:
+                checkedItem = R.id.nav_restaurants;
+                break;
+
+            case R.layout.details_restaurant:
+                checkedItem = R.id.nav_restaurants;
+                break;
+
+            case R.layout.fragment_map:
+                checkedItem = R.id.nav_map;
+                break;
+
+            // Todo : Vérifier si des cas ne sont pas manquants
+
+            default:
+                checkedItem = R.id.nav_restaurants;
+                break;
+        }
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(checkedItem);
     }
 
     @Override
@@ -139,7 +179,12 @@ public class RestaurantsActivity extends AppCompatActivity
         }
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_content, fragment)
+                .addToBackStack(null)
                 .commit();
+
+        fragmentManager.executePendingTransactions();
+
+        Log.d("fragment", Integer.toString(getFragmentManager().getBackStackEntryCount()));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
