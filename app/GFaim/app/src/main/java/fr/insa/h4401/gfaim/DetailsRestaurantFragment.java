@@ -1,20 +1,15 @@
 package fr.insa.h4401.gfaim;
 
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
-
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
+
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
@@ -36,7 +31,6 @@ public class DetailsRestaurantFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private RestaurantFactory.name mRestaurant;
-    private FloatingActionsMenu mFloatingMenu;
 
     private OnFragmentInteractionListener mListener;
 
@@ -72,8 +66,6 @@ public class DetailsRestaurantFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.details_restaurant, null);
-
-        mFloatingMenu = (FloatingActionsMenu) v.findViewById(R.id.actionButton);
 
         Restaurant resto = RestaurantFactory.getRestaurant(mRestaurant);
 

@@ -212,7 +212,6 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView16"
                         android:scaleType="centerCrop"
                         android:adjustViewBounds="true"
                         android:src="@drawable/tacos" />
@@ -420,7 +419,102 @@
         </LinearLayout>
     </LinearLayout> </ScrollView>
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="-10dp"
+        fab:menu_fab_size="normal"
+        fab:menu_showShadow="true"
+        fab:menu_shadowColor="#66000000"
+        fab:menu_shadowRadius="4dp"
+        fab:menu_shadowXOffset="1dp"
+        fab:menu_shadowYOffset="3dp"
+        fab:menu_colorNormal="@color/colorPrimary"
+        fab:menu_colorPressed="#E75043"
+        fab:menu_colorRipple="#99FFFFFF"
+        fab:menu_animationDelayPerItem="50"
+        fab:menu_icon="@drawable/ic_toc_24dp"
+        fab:menu_buttonSpacing="0dp"
+        fab:menu_labels_margin="0dp"
+        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        fab:menu_labels_paddingTop="4dp"
+        fab:menu_labels_paddingRight="8dp"
+        fab:menu_labels_paddingBottom="4dp"
+        fab:menu_labels_paddingLeft="8dp"
+        fab:menu_labels_padding="8dp"
+        fab:menu_labels_textColor="#FFFFFF"
+        fab:menu_labels_textSize="14sp"
+        fab:menu_labels_cornerRadius="3dp"
+        fab:menu_labels_colorNormal="#333333"
+        fab:menu_labels_colorPressed="#444444"
+        fab:menu_labels_colorRipple="#66FFFFFF"
+        fab:menu_labels_showShadow="true"
+        fab:menu_labels_singleLine="false"
+        fab:menu_labels_ellipsize="none"
+        fab:menu_labels_maxLines="-1"
+        fab:menu_labels_position="left"
+        fab:menu_openDirection="up"
+        fab:menu_backgroundColor="@android:color/transparent">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/action_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_label="Voir le menu"
+            android:src="@drawable/ic_menu"
+            fab:fab_colorPressed="@color/white_pressed"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/action_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_label="Appeler"
+            android:src="@drawable/ic_call"
+            fab:fab_colorPressed="@color/white_pressed"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/action_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_label="Site web"
+            android:paddingRight="10dp"
+            android:src="@drawable/ic_internet"
+            fab:fab_colorPressed="@color/white_pressed"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/action_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_label="Ajouter aux favoris"
+            android:src="@drawable/ic_fav"
+            fab:fab_colorPressed="@color/white_pressed"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/action_e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_label="Voir les photos"
+            android:src="@drawable/ic_photo_camera"
+            fab:fab_colorPressed="@color/white_pressed"/>
+
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+
+
+
+
+ <!--   <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -433,53 +527,9 @@
         android:layout_marginBottom="-13dp"
         android:layout_marginEnd="1dp">
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_a"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/white"
-            fab:fab_title="Voir le menu"
-            fab:fab_icon="@drawable/ic_menu"
-            fab:fab_colorPressed="@color/white_pressed"/>
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_b"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/white"
-            fab:fab_title="Appeler"
-            fab:fab_icon="@drawable/ic_call"
-            fab:fab_colorPressed="@color/white_pressed"/>
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/white"
-            fab:fab_title="Site web"
-            fab:fab_icon="@drawable/ic_internet"
-            fab:fab_colorPressed="@color/white_pressed"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_d"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/white"
-            fab:fab_title="Ajouter aux favoris"
-            fab:fab_icon="@drawable/ic_fav"
-            fab:fab_colorPressed="@color/white_pressed"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_e"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/white"
-            fab:fab_title="Voir les photos"
-            fab:fab_icon="@drawable/ic_photo_camera"
-            fab:fab_addButtonPlusIconColor="@color/white"
-            fab:fab_colorPressed="@color/white_pressed"/>
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </com.github.clans.fab.FloatingActionMenu>-->
 
 
 
