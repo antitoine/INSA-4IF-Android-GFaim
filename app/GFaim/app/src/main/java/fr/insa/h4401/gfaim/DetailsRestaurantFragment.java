@@ -2,6 +2,7 @@ package fr.insa.h4401.gfaim;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 
 import android.graphics.drawable.Drawable;
@@ -15,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.github.clans.fab.FloatingActionButton;
+
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.bonuspack.overlays.Polyline;
@@ -24,22 +27,19 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DetailsRestaurantFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DetailsRestaurantFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Details Restaurant fragment
  */
 public class DetailsRestaurantFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String RESTAURANT = "restaurant";
 
-    // TODO: Rename and change types of parameters
-    private RestaurantFactory.name mRestaurant;
+    private FloatingActionButton fab_call;
+    private FloatingActionButton fab_menu;
+    private FloatingActionButton fab_web;
+    private FloatingActionButton fab_star;
+    private FloatingActionButton fab_pictures;
 
+    private RestaurantFactory.name mRestaurant;
     private OnFragmentInteractionListener mListener;
 
     public DetailsRestaurantFragment() {
@@ -47,13 +47,9 @@ public class DetailsRestaurantFragment extends Fragment {
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param String Restaurant
+     * @param Restaurant
      * @return A new instance of fragment DetailsRestaurantFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static DetailsRestaurantFragment newInstance(String restaurant) {
         DetailsRestaurantFragment fragment = new DetailsRestaurantFragment();
         Bundle args = new Bundle();
@@ -87,7 +83,6 @@ public class DetailsRestaurantFragment extends Fragment {
        // drawable.setColorFilter(Color.parseColor("white"), PorterDuff.Mode.SRC_ATOP);
         DrawableCompat.setTint(progressDrawable, Color.WHITE);
 
-
         TextView nbRates = (TextView) v.findViewById(R.id.restaurant_details_nb_rates);
         nbRates.setText(Integer.toString(resto.getNbRates()));
 
@@ -102,6 +97,53 @@ public class DetailsRestaurantFragment extends Fragment {
 
         TextView type = (TextView) v.findViewById(R.id.restaurant_detail_type);
         type.setText(resto.getType());
+
+        // --- Actions des boutons
+
+        fab_call = (FloatingActionButton) v.findViewById(R.id.fab_call);
+        fab_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:0628948371"));
+                startActivity(intent);
+            }
+        });
+
+        fab_web = (FloatingActionButton) v.findViewById(R.id.fab_web);
+        fab_web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+                startActivity(browserIntent);
+            }
+        });
+
+        fab_star = (FloatingActionButton) v.findViewById(R.id.fab_star);
+        fab_star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        fab_menu = (FloatingActionButton) v.findViewById(R.id.fab_menu);
+        fab_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        fab_pictures = (FloatingActionButton) v.findViewById(R.id.fab_pictures);
+        fab_pictures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
 
         // --- Mise à jour de la map
         MapView mapView = (MapView) v.findViewById(R.id.mapview_min);
@@ -134,7 +176,6 @@ public class DetailsRestaurantFragment extends Fragment {
         return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             //mListener.onFragmentInteraction(uri);

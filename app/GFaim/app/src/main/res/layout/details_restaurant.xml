@@ -440,7 +440,7 @@
         fab:menu_icon="@drawable/ic_toc_24dp"
         fab:menu_buttonSpacing="0dp"
         fab:menu_labels_margin="0dp"
-        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_showAnimation="@anim/fab_scale_up"
         fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
         fab:menu_labels_paddingTop="4dp"
         fab:menu_labels_paddingRight="8dp"
@@ -462,7 +462,7 @@
         fab:menu_backgroundColor="@android:color/transparent">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/action_a"
+            android:id="@+id/fab_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
@@ -471,7 +471,7 @@
             fab:fab_colorPressed="@color/white_pressed"/>
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/action_b"
+            android:id="@+id/fab_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
@@ -480,7 +480,7 @@
             fab:fab_colorPressed="@color/white_pressed"/>
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/action_c"
+            android:id="@+id/fab_web"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
@@ -490,7 +490,7 @@
             fab:fab_colorPressed="@color/white_pressed"/>
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/action_d"
+            android:id="@+id/fab_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
@@ -499,7 +499,7 @@
             fab:fab_colorPressed="@color/white_pressed"/>
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/action_e"
+            android:id="@+id/fab_pictures"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
