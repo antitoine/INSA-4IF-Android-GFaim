@@ -29,5 +29,10 @@
     <string name="carte">Carte</string>
     <string name="avis1">Bon tacos mais dommage qu\'il ne soit pas plus light !</string>
     <string name="johnDoe">John Doe</string>
+    <string name="presentation">Présentation</string>
+    <string name="eventDescription">Soirée barbecue au tacos ! Venez Nombreux mes petits canards !</string>
+    <string name="dateEvent">Samedi 16 janvier</string>
+    <string name="eventTitle">Soirée tacos</string>
+    <string name="dash"> - </string>
 
 </resources>
