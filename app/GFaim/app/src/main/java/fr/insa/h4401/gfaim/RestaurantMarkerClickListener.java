@@ -32,6 +32,8 @@ public class RestaurantMarkerClickListener implements Marker.OnMarkerClickListen
                 mapView.getOverlays().remove(currentRoad);
             }
 
+            MapData.getInstance().setCurrentMarker(marker);
+            MapData.getInstance().setCurrentRoad(roadOverlay);
             mapView.getOverlays().add(0, roadOverlay);
             mapView.invalidate();
 
@@ -40,8 +42,6 @@ public class RestaurantMarkerClickListener implements Marker.OnMarkerClickListen
             /* On ne trace pas le chemin s'il n'a pas pu être calculé. */
             e.printStackTrace();
         }
-
-        mapView.getController().setCenter(marker.getPosition());
 
         currentMarker = marker;
 

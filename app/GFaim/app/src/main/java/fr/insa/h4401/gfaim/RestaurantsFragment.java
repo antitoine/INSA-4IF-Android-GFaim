@@ -133,7 +133,6 @@ public class RestaurantsFragment extends Fragment implements View.OnClickListene
             DetailsRestaurantFragment detailsRestaurantFragment = DetailsRestaurantFragment.newInstance(
                     ((TextView) v.findViewById(R.id.restaurant_cardview_enum)).getText().toString());
 
-
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.frame_content, detailsRestaurantFragment)

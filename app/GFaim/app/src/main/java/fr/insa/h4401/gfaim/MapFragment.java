@@ -9,10 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
+import org.osmdroid.bonuspack.overlays.MapEventsReceiver;
 import org.osmdroid.bonuspack.overlays.Marker;
+import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
 import org.osmdroid.util.ResourceProxyImpl;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Overlay;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -23,7 +31,7 @@ import org.osmdroid.views.MapView;
  * Use the {@link MapFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements MapEventsReceiver {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -76,32 +84,33 @@ public class MapFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_map, container, false);
 
-        MapView map = (MapView) view.findViewById(R.id.mapview);
-        map.setTileSource(TileSourceFactory.MAPNIK);
+        mMapView = (MapView) view.findViewById(R.id.mapview);
+        mMapView.setTileSource(TileSourceFactory.MAPNIK);
         //map.setBuiltInZoomControls(true);
-        map.setMultiTouchControls(true);
+        mMapView.setMultiTouchControls(true);
 
-        IMapController mapController = map.getController();
+
+        IMapController mapController = mMapView.getController();
         mapController.setZoom(18);
 
+        // Event overlay
+        MapEventsOverlay evOverlay = new MapEventsOverlay(getContext(), this);
+        mMapView.getOverlays().add(evOverlay);
+
         // Position de l'utilisateur
-        Marker currentPosition = MarkerFactory.getCurrentLocationMarker(map);
+        Marker currentPosition = MarkerFactory.getCurrentLocationMarker(mMapView);
+        MapData.getInstance().addMarker(currentPosition, MapData.KEY_CURRENT_POS_MARKER);
 
         // Restaurants
-        Restaurant snackCampus = RestaurantFactory.getRestaurant(RestaurantFactory.name.SNACK_CAMPUS);
-        Marker snackCampusMarker = MarkerFactory.getRestaurantMarker(map, snackCampus);
+        for (Restaurant restaurant : RestaurantFactory.getAllRestaurants()) {
+            MapData.getInstance().addMarker(MarkerFactory.getRestaurantMarker(this, mMapView, restaurant), restaurant.getNameId());
+        }
 
-        Restaurant grandRU = RestaurantFactory.getRestaurant(RestaurantFactory.name.GRAND_RU);
-        Marker grandRUmarker = MarkerFactory.getRestaurantMarker(map, grandRU);
+        mMapView.getOverlays().addAll(MapData.getInstance().getMarkers());
 
-
-
-        map.getOverlays().add(currentPosition);
-        map.getOverlays().add(snackCampusMarker);
-        map.getOverlays().add(grandRUmarker);
         mapController.setCenter(currentPosition.getPosition());
 
-        map.invalidate();
+        mMapView.invalidate();
 
         return view;
     }
@@ -129,6 +138,31 @@ public class MapFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public boolean singleTapConfirmedHelper(GeoPoint p) {
+
+        for (Marker marker : MapData.getInstance().getMarkers()) {
+            marker.closeInfoWindow();
+        }
+
+        if (!mMapView.getOverlays().isEmpty()) {
+            Overlay firstOverlay = mMapView.getOverlays().get(0);
+            if (firstOverlay instanceof Polyline) {
+                // Road
+                mMapView.getOverlays().remove(firstOverlay);
+            }
+        }
+
+        mMapView.invalidate();
+
+        return true;
+    }
+
+    @Override
+    public boolean longPressHelper(GeoPoint p) {
+        return false;
     }
 
     /**

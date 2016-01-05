@@ -24,15 +24,14 @@
             android:layout_height="1dip"
             android:background="#000000" />
 
-        <ImageView
-            android:layout_height="150dp"
+        <org.osmdroid.views.MapView android:id="@+id/mapview_min"
             android:layout_width="fill_parent"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
-            android:id="@+id/map_restaurant"
             android:layout_gravity="top"
-            android:src="@drawable/map"
-            android:contentDescription="@string/carte" />
+            android:contentDescription="@string/carte"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -215,6 +214,7 @@
                         android:scaleType="centerCrop"
                         android:adjustViewBounds="true"
                         android:src="@drawable/tacos" />
+
 
                     <LinearLayout
                         android:layout_marginStart="10dp"

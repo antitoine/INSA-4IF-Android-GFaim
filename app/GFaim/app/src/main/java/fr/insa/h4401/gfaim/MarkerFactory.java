@@ -1,5 +1,6 @@
 package fr.insa.h4401.gfaim;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 
 import org.osmdroid.bonuspack.overlays.Marker;
@@ -17,9 +18,9 @@ public abstract class MarkerFactory {
         return marker;
     }
 
-    public static Marker getRestaurantMarker(MapView mapView, Restaurant restaurant) {
+    public static Marker getRestaurantMarker(Fragment fragment, MapView mapView, Restaurant restaurant) {
         Marker marker = createMarker(mapView, restaurant.getLocation());
-        RestaurantMapInfoWindow popupWindow = new RestaurantMapInfoWindow(mapView, restaurant);
+        RestaurantMapInfoWindow popupWindow = new RestaurantMapInfoWindow(fragment, mapView, restaurant);
         marker.setInfoWindow(popupWindow);
         marker.setIcon(ContextCompat.getDrawable(mapView.getContext(), R.drawable.pin_restaurant));
         marker.setOnMarkerClickListener(new RestaurantMarkerClickListener());

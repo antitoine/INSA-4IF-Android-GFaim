@@ -15,6 +15,14 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.overlays.Marker;
+import org.osmdroid.bonuspack.overlays.Polyline;
+import org.osmdroid.bonuspack.routing.Road;
+import org.osmdroid.bonuspack.routing.RoadManager;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.views.MapView;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -95,7 +103,33 @@ public class DetailsRestaurantFragment extends Fragment {
         TextView type = (TextView) v.findViewById(R.id.restaurant_detail_type);
         type.setText(resto.getType());
 
+        // --- Mise à jour de la map
+        MapView mapView = (MapView) v.findViewById(R.id.mapview_min);
+        mapView.setTileSource(TileSourceFactory.MAPNIK);
 
+        IMapController mapController = mapView.getController();
+        mapController.setZoom(18);
+
+        Marker currentPos = MapData.getInstance().getMarker(MapData.KEY_CURRENT_POS_MARKER);
+        Marker restauMarker = MapData.getInstance().getMarker(resto.getNameId());
+
+        mapView.getOverlays().add(currentPos);
+        mapView.getOverlays().add(restauMarker);
+
+        try {
+            MapQuestRouteCompute mapQuestRouteCompute = new MapQuestRouteCompute(mapView.getContext());
+            Road road = mapQuestRouteCompute.execute(currentPos.getPosition(), restauMarker.getPosition()).get();
+            Polyline roadOverlay = RoadManager.buildRoadOverlay(road, mapView.getContext());
+
+            mapView.getOverlays().add(0, roadOverlay);
+        } catch (Exception e) {
+            /* On ne trace pas le chemin s'il n'a pas pu être calculé. */
+            e.printStackTrace();
+        }
+
+        mapController.setCenter(restauMarker.getPosition());
+
+        mapView.invalidate();
 
         return v;
     }
