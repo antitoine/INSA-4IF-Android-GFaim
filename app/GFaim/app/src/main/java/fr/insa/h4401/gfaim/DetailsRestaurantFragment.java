@@ -26,6 +26,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.bonuspack.routing.Road;
@@ -177,11 +178,11 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
             }
         });
 
-        v.setOnTouchListener(new OnTouchListener() {
+        v.findViewById(R.id.restaurant_detail_scrollview).setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                menu.toggle(false);
-                return false;
+                closeFloatingMenu();
+                return true;
             }
         });
 
@@ -189,6 +190,16 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         // --- Mise à jour de la map
         MapView mapView = (MapView) v.findViewById(R.id.mapview_min);
         mapView.setTileSource(TileSourceFactory.MAPNIK);
+        mapView.setBuiltInZoomControls(false);
+        mapView.setMultiTouchControls(false);
+
+        mapView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                closeFloatingMenu();
+                return true;
+            }
+        });
 
         IMapController mapController = mapView.getController();
         mapController.setZoom(18);
@@ -215,6 +226,12 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         mapView.invalidate();
 
         return v;
+    }
+
+    private void closeFloatingMenu() {
+        if (menu.isOpened()) {
+            menu.toggle(true);
+        }
     }
 
     public void onButtonPressed(Uri uri) {
