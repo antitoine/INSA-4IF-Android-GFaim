@@ -10,14 +10,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
@@ -30,7 +36,7 @@ import org.osmdroid.views.MapView;
 /**
  * Details Restaurant fragment
  */
-public class DetailsRestaurantFragment extends Fragment {
+public class DetailsRestaurantFragment extends Fragment implements View.OnTouchListener{
 
     private static final String RESTAURANT = "restaurant";
 
@@ -39,7 +45,7 @@ public class DetailsRestaurantFragment extends Fragment {
     private FloatingActionButton fab_web;
     private FloatingActionButton fab_star;
     private FloatingActionButton fab_pictures;
-
+    private FloatingActionMenu menu;
     private RestaurantFactory.name mRestaurant;
     private OnFragmentInteractionListener mListener;
     private ImageView starIcon;
@@ -82,7 +88,7 @@ public class DetailsRestaurantFragment extends Fragment {
         ratingBar.setRating(resto.getRating());
 
         Drawable progressDrawable = ratingBar.getProgressDrawable();
-       // drawable.setColorFilter(Color.parseColor("white"), PorterDuff.Mode.SRC_ATOP);
+        // drawable.setColorFilter(Color.parseColor("white"), PorterDuff.Mode.SRC_ATOP);
         DrawableCompat.setTint(progressDrawable, Color.WHITE);
 
         TextView nbRates = (TextView) v.findViewById(R.id.restaurant_details_nb_rates);
@@ -100,7 +106,16 @@ public class DetailsRestaurantFragment extends Fragment {
         TextView type = (TextView) v.findViewById(R.id.restaurant_detail_type);
         type.setText(resto.getType());
 
+        starIcon = (ImageView) v.findViewById(R.id.star);
+        if(resto.isFavorite()){
+            starIcon.setImageResource(R.drawable.ic_star_24dp);
+        }else {
+            starIcon.setImageResource(R.drawable.ic_star_outline_24dp);
+        }
+
         // --- Actions des boutons
+
+        menu = (FloatingActionMenu) v.findViewById(R.id.menu);
 
         fab_call = (FloatingActionButton) v.findViewById(R.id.fab_call);
         fab_call.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +124,7 @@ public class DetailsRestaurantFragment extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse("tel:0628948371"));
                 startActivity(intent);
+                menu.toggle(false);
             }
         });
 
@@ -118,15 +134,15 @@ public class DetailsRestaurantFragment extends Fragment {
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
                 startActivity(browserIntent);
+                menu.toggle(false);
             }
         });
 
-        starIcon = (ImageView) v.findViewById(R.id.star);
         fab_star = (FloatingActionButton) v.findViewById(R.id.fab_star);
         fab_star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(resto.isFavorite()){
+                if (resto.isFavorite()) {
                     starIcon.setImageResource(R.drawable.ic_star_outline_24dp);
                     fab_star.setLabelText("Ajouter aux favoris");
                     resto.setFavorite(false);
@@ -135,6 +151,7 @@ public class DetailsRestaurantFragment extends Fragment {
                     fab_star.setLabelText("Retirer des favoris");
                     resto.setFavorite(true);
                 }
+                menu.toggle(false);
             }
         });
 
@@ -142,7 +159,10 @@ public class DetailsRestaurantFragment extends Fragment {
         fab_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                menu.toggle(false);
+                new MaterialDialog.Builder(getContext())
+                        .content("TODO")
+                        .show();
             }
         });
 
@@ -150,10 +170,20 @@ public class DetailsRestaurantFragment extends Fragment {
         fab_pictures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                menu.toggle(false);
+                new MaterialDialog.Builder(getContext())
+                        .content("TODO")
+                        .show();
             }
         });
 
+        v.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                menu.toggle(false);
+                return false;
+            }
+        });
 
 
         // --- Mise à jour de la map
@@ -211,6 +241,14 @@ public class DetailsRestaurantFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        menu.toggle(false);
+        return false;
+
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
