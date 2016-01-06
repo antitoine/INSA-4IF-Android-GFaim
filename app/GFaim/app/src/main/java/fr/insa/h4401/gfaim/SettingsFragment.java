@@ -83,23 +83,23 @@ public class SettingsFragment extends Fragment {
         spinner.setAdapter(adapter);
 
 
-        CardView favButton = (CardView) v.findViewById(R.id.settings_see_fav_button);
-        favButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new MaterialDialog.Builder(getContext())
-                        .content("TODO")
-                        .show();
-            }
-        });
 
-        CardView addAllergie = (CardView) v.findViewById(R.id.settings_add_button);
-        favButton.setOnClickListener(new View.OnClickListener() {
+        CardView addAllergie = (CardView) v.findViewById(R.id.setting_add_button);
+        addAllergie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new MaterialDialog.Builder(getContext())
-                        .content("TODO")
-                        .theme(Theme.DARK)
+                        .title(R.string.title)
+                        .widgetColor(getResources().getColor(R.color.colorPrimary))
+                        .items(R.array.allergies)
+                        .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                                //TODO : Est-ce qu'on sauvegarde ça ? à voir si c'est utile...
+                                return true;
+                            }
+                        })
+                        .positiveText(R.string.choose)
                         .show();
             }
         });
