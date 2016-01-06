@@ -40,12 +40,11 @@
     <string name="avis">avis</string>
     <string name="min">min</string>
     <string name="Pierre">Pierre Jarsaillon</string>
+    <string name="choose">OK</string>
+    <string name="title">Indiquez vos allergies</string>
+    <string name="Régime">Régime</string>
+    <string name="selectionerAllergies">Sélectionner les allergies</string>
 
-    <string-array name="regimes">
-        <item>Pas de régime</item>
-        <item>Végétarien</item>
-        <item>Végétalien</item>
-        <item>Sans Porc</item>
-    </string-array>
+
 
 </resources>
