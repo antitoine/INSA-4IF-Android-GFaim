@@ -33,7 +33,7 @@
             android:contentDescription="@string/carte"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
@@ -42,64 +42,79 @@
             android:paddingEnd="0dp"
             android:orientation="vertical">
 
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/restaurant_detail_name"
-                    android:text="@string/restaurantName"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:layout_marginTop="3dp"/>
-
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <RatingBar
-                    android:id="@+id/restaurant_detail_rating"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:numStars="@integer/restaurant_rating_num"
-                    android:rating="4" />
-
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/restaurant_details_nb_rates"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="3dp" />
+                        android:orientation="horizontal">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/restaurant_detail_name"
+                            android:text="@string/restaurantName"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:text="@string/avis" />
+                        android:layout_height="wrap_content">
 
+                        <RatingBar
+                            android:id="@+id/restaurant_detail_rating"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp"
+                            android:numStars="@integer/restaurant_rating_num"
+                            android:rating="4" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/restaurant_details_nb_rates"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="3dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="@string/avis" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
 
-            </LinearLayout>
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/star"
+                    android:layout_gravity="right"
+                    android:src="@drawable/ic_star_outline_24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="false"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp" />" />
+
+        </RelativeLayout>
 
 
         <LinearLayout
@@ -520,18 +535,6 @@
 
 
     </com.github.clans.fab.FloatingActionMenu>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/star"
-        android:layout_gravity="right"
-        android:src="@drawable/ic_star_outline_24dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="160dp"
-        android:layout_marginRight="10dp" />
 
 
     <!--   <com.github.clans.fab.FloatingActionMenu
