@@ -1,13 +1,39 @@
 package fr.insa.h4401.gfaim;
 
+import android.widget.ArrayAdapter;
+
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public abstract class RestaurantFactory {
 
     public enum name { SNACK_CAMPUS, GRAND_RU, BEURK, GRILLON, OLIVIER };
 
     private static HashMap<name, Restaurant> restaurantsList = new HashMap<>();
+
+    private static HashMap<Integer, Allergie> allergies = new HashMap<>();
+
+    public static HashMap<Integer, Allergie> getAllergies(){
+        if(allergies.isEmpty()){
+            allergies.put(0, new Allergie(true, "Gluten"));
+            allergies.put(1, new Allergie(false, "Crustacés"));
+            allergies.put(2, new Allergie(false, "Mollusques"));
+            allergies.put(3, new Allergie(false, "Oeufs"));
+            allergies.put(4, new Allergie(false, "Poissons"));
+            allergies.put(5, new Allergie(false, "Arachides"));
+            allergies.put(6, new Allergie(false, "Soja"));
+            allergies.put(7, new Allergie(false, "Lait"));
+            allergies.put(8, new Allergie(false, "Fruits à coques"));
+            allergies.put(9, new Allergie(false, "Céleri"));
+            allergies.put(10, new Allergie(false, "Moutarde"));
+            allergies.put(11, new Allergie(false, "Graines de sésame"));
+            allergies.put(12, new Allergie(false, "Anhydride sulfureux et sulfites"));
+            allergies.put(13, new Allergie(false, "Lupin"));
+        }
+
+        return allergies;
+    }
 
     private static HashMap<name, Restaurant> getRestaurantsList() {
         if(restaurantsList.isEmpty()) {

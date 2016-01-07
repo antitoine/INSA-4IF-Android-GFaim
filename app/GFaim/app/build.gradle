@@ -39,4 +39,5 @@ dependencies {
     compile('com.github.afollestad.material-dialogs:commons:0.8.5.3@aar') {
         transitive = true
     }
+    compile 'org.apmem.tools:layouts:1.10@aar'
 }
