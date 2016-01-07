@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 import java.net.URL;
@@ -139,7 +140,15 @@ public class RestaurantsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.advanced_search) {
+
+            MaterialDialog dialog = new MaterialDialog.Builder(this)
+                    .title(R.string.advanced_search)
+                    .customView(R.layout.advanced_search_layout, false)
+                    .positiveText("Rechercher")
+                    .show();
+
+
             return true;
         }
 

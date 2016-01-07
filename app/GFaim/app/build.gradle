@@ -46,4 +46,5 @@ dependencies {
     compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
+    compile 'com.github.rey5137:material:1.2.2'
 }
