@@ -20,11 +20,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dip"
-                android:background="#000000" />
-
             <org.osmdroid.views.MapView
                 android:id="@+id/mapview_min"
                 android:layout_width="fill_parent"
