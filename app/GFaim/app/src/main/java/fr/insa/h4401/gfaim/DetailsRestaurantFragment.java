@@ -32,6 +32,10 @@ import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Details Restaurant fragment
  */
@@ -103,16 +107,26 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         TextView type = (TextView) v.findViewById(R.id.restaurant_detail_type);
         type.setText(restau.getType());
 
-        starIcon = (ImageView) v.findViewById(R.id.star);
-        if(restau.isFavorite()){
-            starIcon.setImageResource(R.drawable.ic_star_24dp);
-        }else {
-            starIcon.setImageResource(R.drawable.ic_star_outline_24dp);
+        starIcon = (ImageView) v.findViewById(R.id.restaurant_detail_favorite);
+        if (restau.isFavorite()){
+            starIcon.setVisibility(View.VISIBLE);
         }
 
         // --- Actions des boutons
 
         menu = (FloatingActionMenu) v.findViewById(R.id.menu);
+
+        menu.hideMenuButton(false);
+
+        v.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                Log.d("timer", "timer out");
+                menu.showMenuButton(true);
+            }
+
+        }, 500);
 
         fab_call = (FloatingActionButton) v.findViewById(R.id.fab_call);
         fab_call.setOnClickListener(new View.OnClickListener() {
@@ -140,11 +154,11 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
             @Override
             public void onClick(View v) {
                 if (restau.isFavorite()) {
-                    starIcon.setImageResource(R.drawable.ic_star_outline_24dp);
+                    starIcon.setVisibility(View.INVISIBLE);
                     fab_star.setLabelText("Ajouter aux favoris");
                     restau.setFavorite(false);
                 } else {
-                    starIcon.setImageResource(R.drawable.ic_star_24dp);
+                    starIcon.setVisibility(View.VISIBLE);
                     fab_star.setLabelText("Retirer des favoris");
                     restau.setFavorite(true);
                 }

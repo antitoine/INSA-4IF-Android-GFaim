@@ -41,40 +41,72 @@
                 android:orientation="vertical"
                 android:padding="8dp">
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Snack du campus"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:id="@+id/restaurant_cardview_title"/>
+                    android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <RatingBar
-                        style="?android:attr/ratingBarStyleSmall"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Snack du campus"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:id="@+id/restaurant_cardview_title"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingBottom="10dp">
+
+                            <RatingBar
+                                style="?android:attr/ratingBarStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:numStars="@integer/restaurant_rating_num"
+                                android:rating="4"
+                                android:id="@+id/restaurant_cardview_rating"/>
+
+                            <TextView
+                                android:id="@+id/restaurant_cardview_nb_rates"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" avis" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:numStars="@integer/restaurant_rating_num"
-                        android:rating="4"
-                        android:id="@+id/restaurant_cardview_rating"/>
+                        android:id="@+id/restaurant_cardview_favorite"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_star_red_24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="false"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:visibility="invisible"
+                        />
+                </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/restaurant_cardview_nb_rates"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" avis" />
 
-                </LinearLayout>
+
+
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
