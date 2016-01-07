@@ -4,13 +4,11 @@ package fr.insa.h4401.gfaim;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,12 +19,12 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import org.osmdroid.api.IMapController;
-import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.bonuspack.routing.Road;
@@ -56,7 +54,6 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
     }
 
     /**
-     * @param Restaurant
      * @return A new instance of fragment DetailsRestaurantFragment.
      */
     public static DetailsRestaurantFragment newInstance(String restaurant) {
@@ -160,9 +157,23 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
             @Override
             public void onClick(View v) {
                 menu.toggle(false);
-                new MaterialDialog.Builder(getContext())
-                        .content("TODO")
+                MaterialDialog dialog = new MaterialDialog.Builder(getContext())
+                        .title(R.string.menu_tile)
+                        .customView(R.layout.menu_dialog_layout, false)
+                        .positiveText("Fermer")
                         .show();
+
+                View view = dialog.getCustomView();
+                SliderLayout sliderShow = (SliderLayout) view.findViewById(R.id.slider);
+
+                DefaultSliderView defaultSliderView2 = new DefaultSliderView(getContext());
+                defaultSliderView2.image(R.drawable.menu1);
+                sliderShow.addSlider(defaultSliderView2);
+
+                DefaultSliderView defaultSliderView3 = new DefaultSliderView(getContext());
+                defaultSliderView3.image(R.drawable.menu2);
+                sliderShow.addSlider(defaultSliderView3);
+
             }
         });
 
@@ -171,9 +182,24 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
             @Override
             public void onClick(View v) {
                 menu.toggle(false);
-                new MaterialDialog.Builder(getContext())
-                        .content("TODO")
+                MaterialDialog dialog = new MaterialDialog.Builder(getContext())
+                        .customView(R.layout.slider_photos_dialog, false)
+                        .positiveText("Fermer")
                         .show();
+                View view = dialog.getCustomView();
+                SliderLayout sliderShow = (SliderLayout) view.findViewById(R.id.slider);
+                DefaultSliderView defaultSliderView1 = new DefaultSliderView(getContext());
+                defaultSliderView1.image(R.drawable.snack_campus);
+                sliderShow.addSlider(defaultSliderView1);
+
+                DefaultSliderView defaultSliderView2 = new DefaultSliderView(getContext());
+                defaultSliderView2.image(R.drawable.snack_campus);
+                sliderShow.addSlider(defaultSliderView2);
+
+                DefaultSliderView defaultSliderView3 = new DefaultSliderView(getContext());
+                defaultSliderView3.image(R.drawable.snack_campus);
+                sliderShow.addSlider(defaultSliderView3);
+
             }
         });
 
