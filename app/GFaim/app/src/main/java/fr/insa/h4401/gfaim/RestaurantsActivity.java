@@ -18,9 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -90,7 +88,7 @@ public class RestaurantsActivity extends AppCompatActivity
                 checkedItem = R.id.nav_restaurants;
                 break;
 
-            case R.layout.details_restaurant:
+            case R.layout.fragment_details_restaurant:
                 checkedItem = R.id.nav_restaurants;
                 break;
 
@@ -274,7 +272,7 @@ public class RestaurantsActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_alarms:
-                fragment = new AlarmSettingsFragment();
+                fragment = new AlarmsFragment();
                 break;
 
             case R.id.nav_map:

@@ -23,7 +23,6 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:paddingRight="80dp"
                     android:text="@string/Régime"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -81,6 +80,8 @@
                             android:textColor="#000000" />
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
+
+
             </LinearLayout>
 
             <LinearLayout
