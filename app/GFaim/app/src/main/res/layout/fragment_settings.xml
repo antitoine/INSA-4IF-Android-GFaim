@@ -81,10 +81,18 @@
                             android:textColor="#000000" />
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
-
             </TableRow>
+
         </TableLayout>
 
+        <org.apmem.tools.layouts.FlowLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:padding="10dp"
+            android:id="@+id/tagAllergies"
+            android:layout_height="wrap_content">
+
+        </org.apmem.tools.layouts.FlowLayout>
 
     </LinearLayout>
 </FrameLayout>
