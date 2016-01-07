@@ -89,6 +89,9 @@ public class RestaurantsFragment extends Fragment implements View.OnClickListene
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_enum)).setText(restaurant.getNameId());
 
         ((ImageView) cardview.findViewById(R.id.restaurant_cardview_image)).setImageResource(restaurant.getImageResource());
+        if (restaurant.isFavorite()) {
+            cardview.findViewById(R.id.restaurant_cardview_favorite).setVisibility(View.VISIBLE);
+        }
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_title)).setText(restaurant.getTitle());
         ((RatingBar) cardview.findViewById(R.id.restaurant_cardview_rating)).setRating(restaurant.getRating());
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_nb_rates)).setText(Integer.toString(restaurant.getNbRates()));
