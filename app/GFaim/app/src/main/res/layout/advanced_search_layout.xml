@@ -13,7 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:paddingEnd="10dp"
+            android:paddingStart="25dp">
 
 
             <LinearLayout
@@ -27,6 +28,7 @@
                     android:id="@+id/textView1"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:paddingTop="12dp"
                     android:layout_height="wrap_content"
                     android:text="Point de départ"
                     android:layout_gravity="left" />
@@ -48,22 +50,23 @@
                 android:layout_marginBottom="15dp">
 
                 <TextView
+                    android:id="@+id/search_distance_max_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:paddingTop="5dp"
                     android:layout_height="wrap_content"
                     android:text="Distance Max."
                     android:layout_gravity="left" />
 
-                <com.rey.material.widget.Slider
-                    style="@style/Material.Widget.Slider"
+
+                <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                    android:id="@+id/search_distance_max"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:sl_minValue="0"
-                    app:sl_maxValue="100"
-                    app:sl_discreteMode="false"
-                    app:sl_value="100"/>
+                    app:dsb_min="1"
+                    app:dsb_max="15"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -73,21 +76,24 @@
                 android:layout_marginBottom="15dp">
 
                 <TextView
+                    android:id="@+id/search_price_rangebar_text"
+                    android:paddingTop="30dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Prix"
                     android:layout_gravity="left" />
 
-                <com.rey.material.widget.Slider
-                    style="@style/Material.Widget.Slider"
+
+                <com.appyvet.rangebar.RangeBar
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/search_price_rangebar"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:sl_minValue="0"
-                    app:sl_maxValue="100"
-                    app:sl_value="100"/>
+                    custom:tickStart="1"
+                    custom:pinMaxFont="12sp"
+                    custom:tickEnd="30"/>
             </LinearLayout>
 
             <LinearLayout
@@ -97,21 +103,21 @@
                 android:layout_marginBottom="15dp"> 
 
                 <TextView
+                    android:id="@+id/search_waiting_max_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
                     android:text="Temps d'attente max"
                     android:layout_gravity="left" />
 
-                <com.rey.material.widget.Slider
-                    style="@style/Material.Widget.Slider"
+                <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                    android:id="@+id/search_waiting_time"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:sl_minValue="0"
-                    app:sl_maxValue="100"
-                    app:sl_value="100"/>
+                    app:dsb_min="1"
+                    app:dsb_max="15"/>
             </LinearLayout>
 
             <LinearLayout
@@ -123,14 +129,19 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:paddingTop="12dp"
                     android:layout_height="wrap_content"
                     android:text="Type"
                     android:layout_gravity="left" />
-                <Spinner
-                    android:id="@+id/search_type"
+
+                <com.rey.material.widget.Button
+                    android:id="@+id/search_restaurants_types"
+                    style="@style/Material.Drawable.Ripple.Touch"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Choisir les types"
+                    app:rd_enable="true"/>
 
             </LinearLayout>
 
@@ -145,16 +156,22 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Note minimale"
+                    android:paddingTop="5dp"
                     android:layout_gravity="left" />
 
-                <RatingBar
-                    android:id="@+id/restaurant_detail_rating"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
+                <io.techery.properratingbar.ProperRatingBar
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:numStars="5"
-                    android:rating="4" />
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:prb_defaultRating="0"
+                    app:prb_symbolicTick="★"
+                    app:prb_clickable="true"
+                    app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+                    app:prb_symbolicTickSelectedColor="@color/colorPrimary"
+                    app:prb_totalTicks="5"
+                    />
 
             </LinearLayout>
 
@@ -168,16 +185,23 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Ouvert ? "
+                    android:paddingTop="6dp"
                     android:layout_gravity="left" />
 
+                <com.rey.material.widget.CheckBox
+                    android:id="@+id/search_open"
+                    style="@style/Material.Drawable.CheckBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    app:cbd_tickColor="@color/colorPrimary"
+                    android:text=" Peu importe"/>
 
 
             </LinearLayout>
 
-
         </LinearLayout>
-
-
 
     </ScrollView>
 

@@ -201,6 +201,7 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
                         .customView(R.layout.slider_photos_dialog, false)
                         .positiveText("Fermer")
                         .show();
+
                 View view = dialog.getCustomView();
                 SliderLayout sliderShow = (SliderLayout) view.findViewById(R.id.slider);
                 DefaultSliderView defaultSliderView1 = new DefaultSliderView(getContext());

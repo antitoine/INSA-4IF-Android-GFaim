@@ -47,6 +47,7 @@
     <string name="cloose">OK</string>
     <string name="menu_tile">Menu</string>
     <string name="advanced_search">Recherche avancée</string>
+    <string name="type_restaurants">Type de restaurants</string>
 
 
 </resources>

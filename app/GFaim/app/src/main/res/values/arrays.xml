@@ -23,4 +23,13 @@
         <item>Végétalien</item>
         <item>Sans Porc</item>
     </string-array>
+
+    <string-array name="type_restaurants" >
+        <item>Italien</item>
+        <item>Tacos</item>
+        <item>Snack</item>
+        <item>Grillades</item>
+        <item>Sandwicherie</item>
+    </string-array>
+
 </resources>
