@@ -32,7 +32,7 @@
 
                 <Spinner
                     android:id="@+id/settings_regime_spinner"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </TableRow>
@@ -40,7 +40,7 @@
 
             <TableRow
                 android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp">
 

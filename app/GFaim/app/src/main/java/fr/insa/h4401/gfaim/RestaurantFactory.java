@@ -39,7 +39,7 @@ public abstract class RestaurantFactory {
         if(restaurantsList.isEmpty()) {
             restaurantsList.put(name.SNACK_CAMPUS, new Restaurant(
                     name.SNACK_CAMPUS.toString(), 45.777154, 4.874535, "Snack du campus", 4, 3, "Ouvert", "5 à 10 €", 7, 7, R.drawable.snack_campus,
-                    "Snack / Tacos", false));
+                    "Snack / Tacos", true));
 
             restaurantsList.put(name.GRAND_RU,  new Restaurant(
                     name.GRAND_RU.toString(), 45.780901, 4.876403, "Restau U", 2, 10, "Ouvert", "Moins de 6 €", 12, 5, R.drawable.restau_u,

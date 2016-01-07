@@ -6,13 +6,22 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.github.clans.fab.FloatingActionMenu;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -34,6 +43,8 @@ public class RestaurantsFragment extends Fragment implements View.OnClickListene
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private FloatingActionMenu favoritesFloatingButton;
+    private Map<Restaurant, View> restaurantsCardViews = new HashMap<>();
 
     public RestaurantsFragment() {
 
@@ -76,10 +87,52 @@ public class RestaurantsFragment extends Fragment implements View.OnClickListene
 
         // Create the cardview
         for (Restaurant restaurant : RestaurantFactory.getAllRestaurants()) {
-            linearLayout.addView(createRestaurantCardView(inflater, restaurant));
+            View restaurantView = createRestaurantCardView(inflater, restaurant);
+            restaurantsCardViews.put(restaurant, restaurantView);
+            linearLayout.addView(restaurantView);
         }
 
+        // Favorites floating button
+        favoritesFloatingButton = (FloatingActionMenu) view.findViewById(R.id.list_restaurants_favorite);
+        favoritesFloatingButton.hideMenuButton(false);
+
+        favoritesFloatingButton.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (favoritesFloatingButton.isOpened()) {
+                    favoritesFloatingButton.getMenuIconView().setImageResource(R.drawable.ic_star_outline_24dp);
+                    updateFavoritesRestaurants(false);
+                } else {
+                    favoritesFloatingButton.getMenuIconView().setImageResource(R.drawable.ic_star_24dp);
+                    updateFavoritesRestaurants(true);
+                }
+
+                favoritesFloatingButton.toggle(true);
+            }
+        });
+
+        view.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                favoritesFloatingButton.showMenuButton(true);
+            }
+
+        }, 500);
+
         return view;
+    }
+
+    private void updateFavoritesRestaurants(boolean favoritesRequired) {
+        for (Map.Entry<Restaurant, View> entry : restaurantsCardViews.entrySet()) {
+            if (favoritesRequired) {
+                entry.getValue().setVisibility(
+                        (entry.getKey().isFavorite()) ? View.VISIBLE : View.GONE
+                );
+            } else {
+                entry.getValue().setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     private View createRestaurantCardView(LayoutInflater inflater, Restaurant restaurant) {

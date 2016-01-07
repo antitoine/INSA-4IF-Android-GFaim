@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -109,7 +110,7 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         type.setText(restau.getType());
 
         starIcon = (ImageView) v.findViewById(R.id.restaurant_detail_favorite);
-        if (restau.isFavorite()){
+        if (restau.isFavorite()) {
             starIcon.setVisibility(View.VISIBLE);
         }
 
@@ -123,7 +124,6 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
 
             @Override
             public void run() {
-                Log.d("timer", "timer out");
                 menu.showMenuButton(true);
             }
 
@@ -236,8 +236,23 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         mapView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                closeFloatingMenu();
-                return true;
+                if (menu.isOpened()) {
+                    closeFloatingMenu();
+                } else {
+                    if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
+                        MapFragment mapFragment = MapFragment.newInstance(restau.getNameId());
+
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.frame_content, mapFragment)
+                                .addToBackStack(null)
+                                .commit();
+
+                        fragmentManager.executePendingTransactions();
+                    }
+                }
+                return false;
             }
         });
 

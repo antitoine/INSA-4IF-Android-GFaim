@@ -67,9 +67,7 @@ public class RestaurantsActivity extends AppCompatActivity
 
             if (fragmentManager.getBackStackEntryCount() > 0) {
                 updateOptionsMenuSelectedItem(fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getId());
-
-                getSupportFragmentManager().popBackStackImmediate();
-
+                getSupportFragmentManager().popBackStack();
             }
         }
     }
