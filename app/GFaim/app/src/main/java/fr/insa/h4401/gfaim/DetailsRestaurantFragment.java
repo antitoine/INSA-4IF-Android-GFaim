@@ -26,6 +26,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.bonuspack.routing.Road;
@@ -79,35 +80,34 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.details_restaurant, null);
 
-        final Restaurant resto = RestaurantFactory.getRestaurant(mRestaurant);
+        final Restaurant restau = RestaurantFactory.getRestaurant(mRestaurant);
 
         TextView RestaurantTitle = (TextView) v.findViewById(R.id.restaurant_detail_name);
-        RestaurantTitle.setText(resto.getTitle());
+        RestaurantTitle.setText(restau.getTitle());
 
         RatingBar ratingBar = (RatingBar) v.findViewById(R.id.restaurant_detail_rating);
-        ratingBar.setRating(resto.getRating());
+        ratingBar.setRating(restau.getRating());
 
         Drawable progressDrawable = ratingBar.getProgressDrawable();
-        // drawable.setColorFilter(Color.parseColor("white"), PorterDuff.Mode.SRC_ATOP);
         DrawableCompat.setTint(progressDrawable, Color.WHITE);
 
         TextView nbRates = (TextView) v.findViewById(R.id.restaurant_details_nb_rates);
-        nbRates.setText(Integer.toString(resto.getNbRates()));
+        nbRates.setText(Integer.toString(restau.getNbRates()));
 
         TextView status = (TextView) v.findViewById(R.id.restaurant_detail_time);
-        status.setText(resto.getStatus());
+        status.setText(restau.getStatus());
 
         TextView price = (TextView) v.findViewById(R.id.restaurant_detail_price);
-        price.setText(resto.getPrice());
+        price.setText(restau.getPrice());
 
         TextView timeToWait = (TextView) v.findViewById(R.id.restaurant_detail_waitingTime);
-        timeToWait.setText(Integer.toString(resto.getWaitingDuration()));
+        timeToWait.setText(Integer.toString(restau.getWaitingDuration()));
 
         TextView type = (TextView) v.findViewById(R.id.restaurant_detail_type);
-        type.setText(resto.getType());
+        type.setText(restau.getType());
 
         starIcon = (ImageView) v.findViewById(R.id.star);
-        if(resto.isFavorite()){
+        if(restau.isFavorite()){
             starIcon.setImageResource(R.drawable.ic_star_24dp);
         }else {
             starIcon.setImageResource(R.drawable.ic_star_outline_24dp);
@@ -142,14 +142,14 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         fab_star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (resto.isFavorite()) {
+                if (restau.isFavorite()) {
                     starIcon.setImageResource(R.drawable.ic_star_outline_24dp);
                     fab_star.setLabelText("Ajouter aux favoris");
-                    resto.setFavorite(false);
+                    restau.setFavorite(false);
                 } else {
                     starIcon.setImageResource(R.drawable.ic_star_24dp);
                     fab_star.setLabelText("Retirer des favoris");
-                    resto.setFavorite(true);
+                    restau.setFavorite(true);
                 }
                 menu.toggle(false);
             }
@@ -177,10 +177,10 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
             }
         });
 
-        v.setOnTouchListener(new OnTouchListener() {
+        v.findViewById(R.id.restaurant_detail_scrollview).setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                menu.toggle(false);
+                closeFloatingMenu();
                 return false;
             }
         });
@@ -189,12 +189,22 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         // --- Mise à jour de la map
         MapView mapView = (MapView) v.findViewById(R.id.mapview_min);
         mapView.setTileSource(TileSourceFactory.MAPNIK);
+        mapView.setBuiltInZoomControls(false);
+        mapView.setMultiTouchControls(false);
+
+        mapView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                closeFloatingMenu();
+                return true;
+            }
+        });
 
         IMapController mapController = mapView.getController();
         mapController.setZoom(18);
 
         Marker currentPos = MapData.getInstance().getMarker(MapData.KEY_CURRENT_POS_MARKER);
-        Marker restauMarker = MapData.getInstance().getMarker(resto.getNameId());
+        Marker restauMarker = MapData.getInstance().getMarker(restau.getNameId());
 
         mapView.getOverlays().add(currentPos);
         mapView.getOverlays().add(restauMarker);
@@ -215,6 +225,12 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         mapView.invalidate();
 
         return v;
+    }
+
+    private void closeFloatingMenu() {
+        if (menu.isOpened()) {
+            menu.toggle(true);
+        }
     }
 
     public void onButtonPressed(Uri uri) {

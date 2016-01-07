@@ -12,7 +12,9 @@
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:clickable="true"
+        android:id="@+id/restaurant_detail_scrollview">
 
     <LinearLayout
         android:orientation="vertical"
@@ -31,6 +33,7 @@
             android:adjustViewBounds="true"
             android:layout_gravity="top"
             android:contentDescription="@string/carte"
+            android:clickable="true"
             />
 
         <RelativeLayout
