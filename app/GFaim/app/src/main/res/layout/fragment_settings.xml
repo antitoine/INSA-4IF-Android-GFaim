@@ -1,30 +1,27 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="fr.insa.h4401.gfaim.SettingsFragment">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
-        android:orientation="vertical">
-
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <TableRow
-                android:id="@+id/tableRow1"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp">
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:paddingRight="80dp"
                     android:text="@string/Régime"
@@ -32,28 +29,31 @@
 
                 <Spinner
                     android:id="@+id/settings_regime_spinner"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
-            </TableRow>
+            </LinearLayout>
 
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp">
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Allergies"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/setting_add_button"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="36dp"
                     android:layout_below="@+id/button2"
                     android:layout_centerHorizontal="true"
@@ -81,18 +81,29 @@
                             android:textColor="#000000" />
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
-            </TableRow>
+            </LinearLayout>
 
-        </TableLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|top"
+                android:orientation="vertical">
 
-        <org.apmem.tools.layouts.FlowLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:padding="10dp"
-            android:id="@+id/tagAllergies"
-            android:layout_height="wrap_content">
 
-        </org.apmem.tools.layouts.FlowLayout>
+                <org.apmem.tools.layouts.FlowLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:padding="10dp"
+                    android:id="@+id/tagAllergies"
+                    android:layout_height="wrap_content">
 
-    </LinearLayout>
-</FrameLayout>
+                </org.apmem.tools.layouts.FlowLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
