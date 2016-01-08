@@ -107,7 +107,7 @@ public class SettingsFragment extends Fragment {
             }
         }
 
-        CardView addAllergie = (CardView) v.findViewById(R.id.setting_add_button);
+        com.rey.material.widget.Button addAllergie = (com.rey.material.widget.Button) v.findViewById(R.id.setting_add_button);
         addAllergie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

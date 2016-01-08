@@ -11,8 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.aakira.expandablelayout.Utils;
+import com.github.clans.fab.FloatingActionMenu;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -24,18 +29,11 @@ import java.util.List;
  * Use the {@link AlarmsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AlarmsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class AlarmsFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
 
     private OnFragmentInteractionListener mListener;
-
+    final List<ItemModel> data = new ArrayList<>();
+    RecyclerView recyclerView;
     public AlarmsFragment() {
         // Required empty public constructor
     }
@@ -44,16 +42,12 @@ public class AlarmsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment AlarmsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AlarmsFragment newInstance(String param1, String param2) {
+    public static AlarmsFragment newInstance() {
         AlarmsFragment fragment = new AlarmsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,10 +55,6 @@ public class AlarmsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -73,12 +63,27 @@ public class AlarmsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_alarms, container, false);
 
-        final RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+        final FloatingActionMenu fab = (FloatingActionMenu) v.findViewById(R.id.alarm_add_button);
+
+        final TimePickerDialog.OnTimeSetListener that = this;
+        fab.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                TimePickerDialog dpd = TimePickerDialog.newInstance(that,
+                        now.get(Calendar.HOUR_OF_DAY),
+                        now.get(Calendar.MINUTE),
+                        true);
+                dpd.show(getActivity().getFragmentManager(), "TimePickerDialog");
+            }
+        });
+
+
+        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
      //   recyclerView.addItemDecoration(new DividerItemDecoration(this));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        final List<ItemModel> data = new ArrayList<>();
         data.add(new ItemModel(
                 "11:55",
                 R.color.white,
@@ -89,16 +94,7 @@ public class AlarmsFragment extends Fragment {
                 R.color.white,
                 R.color.white,
                 Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
-        data.add(new ItemModel(
-                "18:30",
-                R.color.white,
-                R.color.white,
-                Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
-        data.add(new ItemModel(
-                "20:30",
-                R.color.white,
-                R.color.white,
-                Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
+
         recyclerView.setAdapter(new RecyclerViewRecyclerAdapter(data));
 
 
@@ -128,6 +124,20 @@ public class AlarmsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
+
+        data.add(new ItemModel(
+                hourOfDay+":"+minute,
+                R.color.white,
+                R.color.white,
+                Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
+
+        recyclerView.setAdapter(new RecyclerViewRecyclerAdapter(data));
+
+
     }
 
     /**

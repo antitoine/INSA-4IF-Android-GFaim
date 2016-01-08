@@ -50,15 +50,16 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         holder.expandableLayout.setListener(new ExpandableLayoutListenerAdapter() {
             @Override
             public void onPreOpen() {
-                createRotateAnimator(holder.buttonLayout, 0f, 180f).start();
+                createRotateAnimator(holder.triangle, 0f, 180f).start();
                 holder.itemView.setBackgroundColor(resource.getColor(item.colorId2));
+                holder.lineAbove.setVisibility(View.GONE);
                 expandState.put(position, true);
             }
 
             @Override
             public void onPreClose() {
-                createRotateAnimator(holder.buttonLayout, 180f, 0f).start();
-                expandState.put(position, false);
+                createRotateAnimator(holder.triangle, 180f, 0f).start();
+                holder.lineAbove.setVisibility(View.VISIBLE);
                 holder.itemView.setBackgroundColor(0x00000000);
 
             }
@@ -86,12 +87,16 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         public TextView textView;
         public RelativeLayout buttonLayout;
         public ExpandableRelativeLayout expandableLayout;
+        public View triangle;
+        public View lineAbove;
 
         public ViewHolder(View v) {
             super(v);
             textView = (TextView) v.findViewById(R.id.textView);
-            buttonLayout = (RelativeLayout) v.findViewById(R.id.button);
+            buttonLayout = (RelativeLayout) v.findViewById(R.id.alarm_element);
             expandableLayout = (ExpandableRelativeLayout) v.findViewById(R.id.expandableLayout);
+            triangle = v.findViewById(R.id.triangle);
+            lineAbove = v.findViewById(R.id.line);
         }
     }
 

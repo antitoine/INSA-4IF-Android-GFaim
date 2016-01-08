@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/alarm_element"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="10dp">
 
 
     <com.rey.material.widget.Switch
-        style="@style/Material.Widget.Switch"
         android:id="@+id/switch_alarm"
+        style="@style/Material.Widget.Switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:checked="false"/>
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:checked="false" />
 
     <RelativeLayout
         android:id="@+id/button"
@@ -23,20 +26,18 @@
         android:gravity="center">
 
 
-        <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:background="@drawable/triangle" />
+        <!--<View-->
+        <!--android:layout_width="12dp"-->
+        <!--android:layout_height="12dp"-->
+        <!--android:background="@drawable/triangle" />-->
     </RelativeLayout>
 
-
-
     <LinearLayout
+        android:id="@+id/headerExpand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/headerExpand"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_toLeftOf="@id/switch_alarm"
         android:orientation="vertical">
 
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:padding="8dp"
-            android:textSize="24sp" />
+            android:textSize="30sp" />
 
     </LinearLayout>
 
@@ -56,100 +57,140 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_below="@id/headerExpand"
-        app:ael_expanded="false"
         app:ael_duration="400"
+        app:ael_expanded="false"
         app:ael_orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="30dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <org.apmem.tools.layouts.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/tagAllergies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:padding="10dp">
 
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:background="@drawable/round_button"
-                    android:text="L"
-                    android:textColor="#fff" />
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:background="@drawable/round_button"
-                    android:text="M"
-                    android:textColor="#fff" />
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/round_button"
-                    android:text="M"
-                    android:textColor="#fff" />
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:background="@drawable/round_button"
-                    android:text="J"
-                    android:textColor="#fff" />
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:background="@drawable/round_button"
-                    android:text="V"
-                    android:textColor="#fff" />
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:background="@drawable/round_button"
-                    android:text="S"
-                    android:textColor="#fff" />
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:background="@drawable/round_button"
-                    android:text="D"
-                    android:textColor="#fff" />
-            </LinearLayout>
+                <com.rey.material.widget.CheckBox
+                    style="@style/Material.Drawable.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text=" Lundi"
+                    app:cbd_tickColor="@color/colorPrimary" />
+
+                <com.rey.material.widget.CheckBox
+                    style="@style/Material.Drawable.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text=" Mardi"
+                    app:cbd_tickColor="@color/colorPrimary" />
+
+                <com.rey.material.widget.CheckBox
+                    style="@style/Material.Drawable.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text=" Mercredi"
+                    app:cbd_tickColor="@color/colorPrimary" />
+
+                <com.rey.material.widget.CheckBox
+                    style="@style/Material.Drawable.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text=" Jeudi"
+                    app:cbd_tickColor="@color/colorPrimary" />
+
+
+                <com.rey.material.widget.CheckBox
+                    style="@style/Material.Drawable.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text=" Vendredi"
+                    app:cbd_tickColor="@color/colorPrimary" />
+
+                <com.rey.material.widget.CheckBox
+                    style="@style/Material.Drawable.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text=" Samedi"
+                    app:cbd_tickColor="@color/colorPrimary" />
+
+                <com.rey.material.widget.CheckBox
+                    style="@style/Material.Drawable.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text=" Dimanche"
+                    app:cbd_tickColor="@color/colorPrimary" />
+
+            </org.apmem.tools.layouts.FlowLayout>
+
 
             <TextView
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Restaurants suivis : "/>
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="5dp"
+                android:text="Restaurants suivis : " />
 
             <com.rey.material.widget.Button
+                android:id="@+id/alarm_choose_restaurant"
                 style="@style/Material.Drawable.Ripple.Touch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Choisir"
-                app:rd_enable="true"/>
+                app:rd_enable="true" />
 
         </LinearLayout>
 
     </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
 
     <View
-        android:layout_width="1dp"
-        android:layout_height="fill_parent"
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/triangle"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:background="@color/colorPrimary" />
+
+    <RelativeLayout
+        android:id="@+id/triangle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/expandableLayout"
+        android:gravity="center">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/triangle" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/trash"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/expandableLayout"
+        android:gravity="center">
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_delete_24dp" />
+    </RelativeLayout>
+
+
 </RelativeLayout>
 
