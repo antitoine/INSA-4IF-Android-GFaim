@@ -33,6 +33,8 @@ import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
 
+import io.techery.properratingbar.ProperRatingBar;
+
 /**
  * Details Restaurant fragment
  */
@@ -83,11 +85,8 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         TextView RestaurantTitle = (TextView) v.findViewById(R.id.restaurant_detail_name);
         RestaurantTitle.setText(restau.getTitle());
 
-        RatingBar ratingBar = (RatingBar) v.findViewById(R.id.restaurant_detail_rating);
-        ratingBar.setRating(restau.getRating());
-
-        Drawable progressDrawable = ratingBar.getProgressDrawable();
-        DrawableCompat.setTint(progressDrawable, Color.WHITE);
+        ProperRatingBar ratingBar = (ProperRatingBar) v.findViewById(R.id.restaurant_detail_rating);
+        ratingBar.setRating((int)restau.getRating());
 
         TextView nbRates = (TextView) v.findViewById(R.id.restaurant_details_nb_rates);
         nbRates.setText(Integer.toString(restau.getNbRates()));

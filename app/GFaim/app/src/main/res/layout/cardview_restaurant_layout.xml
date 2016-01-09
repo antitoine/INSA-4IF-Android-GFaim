@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -65,18 +67,27 @@
                             android:orientation="horizontal"
                             android:paddingBottom="10dp">
 
-                            <RatingBar
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:layout_width="wrap_content"
+
+                            <io.techery.properratingbar.ProperRatingBar
+                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                android:id="@+id/restaurant_cardview_rating"
                                 android:layout_height="wrap_content"
-                                android:numStars="@integer/restaurant_rating_num"
-                                android:rating="4"
-                                android:id="@+id/restaurant_cardview_rating"/>
+                                android:layout_width="wrap_content"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                app:prb_defaultRating="0"
+                                app:prb_symbolicTick="★"
+                                app:prb_clickable="false"
+                                app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+                                app:prb_symbolicTickSelectedColor="@color/colorPrimary"
+                                app:prb_totalTicks="5"
+                                />
 
                             <TextView
                                 android:id="@+id/restaurant_cardview_nb_rates"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
                                 android:text="3" />
 
                             <TextView

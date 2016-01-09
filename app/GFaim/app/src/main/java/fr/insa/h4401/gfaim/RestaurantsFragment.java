@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.techery.properratingbar.ProperRatingBar;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -146,7 +148,7 @@ public class RestaurantsFragment extends Fragment implements View.OnClickListene
             cardview.findViewById(R.id.restaurant_cardview_favorite).setVisibility(View.VISIBLE);
         }
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_title)).setText(restaurant.getTitle());
-        ((RatingBar) cardview.findViewById(R.id.restaurant_cardview_rating)).setRating(restaurant.getRating());
+        ((ProperRatingBar) cardview.findViewById(R.id.restaurant_cardview_rating)).setRating((int)restaurant.getRating());
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_nb_rates)).setText(Integer.toString(restaurant.getNbRates()));
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_price)).setText(restaurant.getPrice());
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_waiting_duration)).setText(Integer.toString(restaurant.getWaitingDuration()));
