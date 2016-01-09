@@ -48,6 +48,14 @@
     <string name="menu_tile">Menu</string>
     <string name="advanced_search">Recherche avancée</string>
     <string name="type_restaurants">Type de restaurants</string>
+    <string name="titleChooseRestaurant">Sélectionne les à partir de tes favoris</string>
+    <string name="Lundi">Lundi</string>
+    <string name="Mardi">Mardi</string>
+    <string name="Mercredi">Mercredi</string>
+    <string name="Jeudi">Jeudi</string>
+    <string name="Vendredi">Vendredi</string>
+    <string name="Samedi">Samedi</string>
+    <string name="Dimanche">Dimanche</string>
 
 
 </resources>

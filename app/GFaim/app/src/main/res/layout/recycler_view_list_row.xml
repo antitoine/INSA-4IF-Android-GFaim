@@ -26,10 +26,6 @@
         android:gravity="center">
 
 
-        <!--<View-->
-        <!--android:layout_width="12dp"-->
-        <!--android:layout_height="12dp"-->
-        <!--android:background="@drawable/triangle" />-->
     </RelativeLayout>
 
     <LinearLayout
@@ -69,86 +65,126 @@
             android:layout_marginTop="5dp"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <org.apmem.tools.layouts.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/tagAllergies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp">
+
+                    <com.rey.material.widget.CheckBox
+                        style="@style/Material.Drawable.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/Lundi"
+                        app:cbd_tickColor="@color/colorPrimary" />
+
+                    <com.rey.material.widget.CheckBox
+                        style="@style/Material.Drawable.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/Mardi"
+                        app:cbd_tickColor="@color/colorPrimary" />
+
+                    <com.rey.material.widget.CheckBox
+                        style="@style/Material.Drawable.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/Mercredi"
+                        app:cbd_tickColor="@color/colorPrimary" />
+
+                    <com.rey.material.widget.CheckBox
+                        style="@style/Material.Drawable.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/Jeudi"
+                        app:cbd_tickColor="@color/colorPrimary" />
+
+
+                    <com.rey.material.widget.CheckBox
+                        style="@style/Material.Drawable.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/Vendredi"
+                        app:cbd_tickColor="@color/colorPrimary" />
+
+                    <com.rey.material.widget.CheckBox
+                        style="@style/Material.Drawable.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/Samedi"
+                        app:cbd_tickColor="@color/colorPrimary" />
+
+                    <com.rey.material.widget.CheckBox
+                        style="@style/Material.Drawable.CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/Dimanche"
+                        app:cbd_tickColor="@color/colorPrimary" />
+
+                </org.apmem.tools.layouts.FlowLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Restaurants suivis : " />
+
+                <com.rey.material.widget.Button
+                    android:id="@+id/alarm_choose_restaurant"
+                    style="@style/Material.Drawable.Ripple.Touch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choisir"
+                    app:rd_enable="true" />
+
+            </LinearLayout>
+
             <org.apmem.tools.layouts.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/tagAllergies"
+                android:id="@+id/tagRestaurants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:layout_marginStart="10dp">
 
-                <com.rey.material.widget.CheckBox
-                    style="@style/Material.Drawable.CheckBox"
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text=" Lundi"
-                    app:cbd_tickColor="@color/colorPrimary" />
+                    android:layout_margin="2dp"
+                    android:background="@drawable/rounded_corner"
+                    android:padding="5dp"
+                    android:text="Snack du campus"
+                    android:textColor="#FFFFFF" />
 
-                <com.rey.material.widget.CheckBox
-                    style="@style/Material.Drawable.CheckBox"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text=" Mardi"
-                    app:cbd_tickColor="@color/colorPrimary" />
-
-                <com.rey.material.widget.CheckBox
-                    style="@style/Material.Drawable.CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text=" Mercredi"
-                    app:cbd_tickColor="@color/colorPrimary" />
-
-                <com.rey.material.widget.CheckBox
-                    style="@style/Material.Drawable.CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text=" Jeudi"
-                    app:cbd_tickColor="@color/colorPrimary" />
-
-
-                <com.rey.material.widget.CheckBox
-                    style="@style/Material.Drawable.CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text=" Vendredi"
-                    app:cbd_tickColor="@color/colorPrimary" />
-
-                <com.rey.material.widget.CheckBox
-                    style="@style/Material.Drawable.CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text=" Samedi"
-                    app:cbd_tickColor="@color/colorPrimary" />
-
-                <com.rey.material.widget.CheckBox
-                    style="@style/Material.Drawable.CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text=" Dimanche"
-                    app:cbd_tickColor="@color/colorPrimary" />
+                    android:layout_margin="2dp"
+                    android:background="@drawable/rounded_corner"
+                    android:padding="5dp"
+                    android:text="Grillon"
+                    android:textColor="#FFFFFF" />
 
             </org.apmem.tools.layouts.FlowLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="5dp"
-                android:text="Restaurants suivis : " />
-
-            <com.rey.material.widget.Button
-                android:id="@+id/alarm_choose_restaurant"
-                style="@style/Material.Drawable.Ripple.Touch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Choisir"
-                app:rd_enable="true" />
 
         </LinearLayout>
 

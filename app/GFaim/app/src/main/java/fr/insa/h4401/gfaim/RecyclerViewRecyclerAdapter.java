@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.github.aakira.expandablelayout.Utils;
+import com.rey.material.widget.Button;
 import com.rey.material.widget.Switch;
 
 import java.util.ArrayList;
@@ -92,6 +94,25 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
                 onClickButton(holder.expandableLayout);
             }
         });
+
+        holder.chooseRestaurantButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MaterialDialog.Builder(v.getContext())
+                        .title(R.string.titleChooseRestaurant)
+                        .widgetColor(resource.getColor(R.color.colorPrimary))
+                        .items(R.array.restaurants_favoris)
+                        .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                                return true;
+                            }
+                        })
+                        .positiveText(R.string.choose)
+                        .show();
+            }
+        });
+
     }
 
     private void onClickButton(final ExpandableLayout expandableLayout) {
@@ -116,6 +137,7 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         public View lineAbove;
         public View trash;
         public Switch aSwitch;
+        public Button chooseRestaurantButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -126,6 +148,7 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             lineAbove = v.findViewById(R.id.line);
             trash = v.findViewById(R.id.trash);
             aSwitch = (Switch) v.findViewById(R.id.switch_alarm);
+            chooseRestaurantButton = (Button) v.findViewById(R.id.alarm_choose_restaurant);
         }
     }
 
