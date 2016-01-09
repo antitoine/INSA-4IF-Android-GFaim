@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:text="Gratin de fromage" />
+                android:text="Rillettes" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="10 €" />
+                android:text="3 €" />
 
         </LinearLayout>
         <LinearLayout
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:text="Gratin de fromage" />
+                android:text="Crudités" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="10 €" />
+                android:text="1 €" />
         </LinearLayout>
 
         <TextView
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:text="Gratin de fromage" />
+                android:text="Soupe de poisson" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="10 €" />
+                android:text="4 €" />
 
         </LinearLayout>
         <LinearLayout
@@ -139,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:text="Gratin de fromage" />
+                android:text="Gratin de courgettes" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="10 €" />
+                android:text="5 €" />
         </LinearLayout>
 
         <TextView
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:text="Gratin de fromage" />
+                android:text="Tarte aux pommes" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="10 €" />
+                android:text="2 €" />
         </LinearLayout>
 
         <LinearLayout
@@ -202,7 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:text="Gratin de fromage" />
+                android:text="Meringue" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -210,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="10 €" />
+                android:text="2 €" />
 
         </LinearLayout>
 
@@ -230,7 +230,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:text="Gratin de fromage" />
+                android:text="Pomme" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -238,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="10 €" />
+                android:text="1 €" />
 
         </LinearLayout>
 
