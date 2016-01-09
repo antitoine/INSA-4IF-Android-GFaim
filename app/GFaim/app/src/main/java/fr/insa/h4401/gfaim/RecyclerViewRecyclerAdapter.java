@@ -16,16 +16,20 @@ import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.github.aakira.expandablelayout.Utils;
+import com.rey.material.widget.Switch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerViewRecyclerAdapter.ViewHolder> {
 
     private final List<ItemModel> data;
+    private List<ViewHolder> alarmsView;
     private Context context;
     private SparseBooleanArray expandState = new SparseBooleanArray();
 
     public RecyclerViewRecyclerAdapter(final List<ItemModel> data) {
+        alarmsView = new ArrayList<>();
         this.data = data;
         for (int i = 0; i < data.size(); i++) {
             expandState.append(i, false);
@@ -35,8 +39,10 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         this.context = parent.getContext();
-        return new ViewHolder(LayoutInflater.from(context)
+        ViewHolder v = new ViewHolder(LayoutInflater.from(context)
                 .inflate(R.layout.recycler_view_list_row, parent, false));
+        alarmsView.add(v);
+        return v;
     }
 
     @Override
@@ -44,6 +50,12 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         final ItemModel item = data.get(position);
         final Resources resource = context.getResources();
         holder.textView.setText(item.description);
+
+        if((item.isOn && !holder.aSwitch.isChecked()) ||
+                (!item.isOn && holder.aSwitch.isChecked()) ){
+            holder.aSwitch.toggle();
+        }
+
         holder.expandableLayout.setInterpolator(item.interpolator);
         holder.expandableLayout.setExpanded(expandState.get(position));
 
@@ -59,7 +71,7 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             public void onPreOpen() {
                 createRotateAnimator(holder.triangle, 0f, 180f).start();
                 holder.itemView.setBackgroundColor(Color.WHITE);
-                holder.itemView.setElevation(3);
+                holder.itemView.setElevation(5);
                 holder.lineAbove.setVisibility(View.GONE);
                 expandState.put(position, true);
             }
@@ -83,6 +95,11 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     private void onClickButton(final ExpandableLayout expandableLayout) {
+        for(ViewHolder v : alarmsView){
+            if(v.expandableLayout.isExpanded() && !v.expandableLayout.equals(expandableLayout)){
+                v.expandableLayout.toggle();
+            }
+        }
         expandableLayout.toggle();
     }
 
@@ -98,6 +115,7 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         public View triangle;
         public View lineAbove;
         public View trash;
+        public Switch aSwitch;
 
         public ViewHolder(View v) {
             super(v);
@@ -107,6 +125,7 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             triangle = v.findViewById(R.id.triangle);
             lineAbove = v.findViewById(R.id.line);
             trash = v.findViewById(R.id.trash);
+            aSwitch = (Switch) v.findViewById(R.id.switch_alarm);
         }
     }
 

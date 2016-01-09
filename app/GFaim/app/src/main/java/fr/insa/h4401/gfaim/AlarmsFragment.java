@@ -82,16 +82,18 @@ public class AlarmsFragment extends Fragment implements TimePickerDialog.OnTimeS
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        data.add(new ItemModel(
-                "11:55",
-                Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
-        data.add(new ItemModel(
-                "12:55",
-                Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
+        if(data.isEmpty()){
+            data.add(new ItemModel(
+                    "11:55",
+                    Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR),
+                    false));
+            data.add(new ItemModel(
+                    "12:55",
+                    Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR),
+                    true));
+        }
 
         recyclerView.setAdapter(new RecyclerViewRecyclerAdapter(data));
-
-
 
         return v;
     }
@@ -136,7 +138,8 @@ public class AlarmsFragment extends Fragment implements TimePickerDialog.OnTimeS
 
         data.add(new ItemModel(
                 hour + ":" + min,
-                Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
+                Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR),
+                true));
 
         recyclerView.setAdapter(new RecyclerViewRecyclerAdapter(data));
 
