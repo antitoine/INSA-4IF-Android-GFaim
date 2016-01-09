@@ -17,12 +17,20 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:id="@+id/imageView15"
-            android:src="@mipmap/android_gfaim_logo"
+            android:src="@drawable/logo"
             android:layout_gravity="center_horizontal"
-            android:paddingBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:layout_weight="0" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="Manger sans soucis ! "/>
 
         <LinearLayout
             android:orientation="vertical"
@@ -31,11 +39,26 @@
             android:layout_weight="1"
             android:gravity="bottom">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginBottom="10dp"
+                android:text="Connecte toi pour pouvoir poster des avis sur les restaurants, poster des photos, ou gérer un restaurant"/>
+
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/sign_in_button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal" />
+
+            <com.rey.material.widget.Button
+                android:id="@+id/without_signin_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Continuer sans compte"/>
+
+
         </LinearLayout>
 
     </LinearLayout>

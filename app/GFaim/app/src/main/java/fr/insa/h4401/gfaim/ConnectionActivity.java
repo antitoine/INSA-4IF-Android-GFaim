@@ -13,6 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.rey.material.widget.Button;
 
 public class ConnectionActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener, GoogleApiClient.ConnectionCallbacks {
 
@@ -60,6 +61,16 @@ public class ConnectionActivity extends AppCompatActivity implements GoogleApiCl
         signInButton.setScopes(gso.getScopeArray());
 
         signInButton.setOnClickListener(this);
+
+        Button withoutSignInButton = (Button) findViewById(R.id.without_signin_button);
+
+        withoutSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ConnectionActivity.this, RestaurantsActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
