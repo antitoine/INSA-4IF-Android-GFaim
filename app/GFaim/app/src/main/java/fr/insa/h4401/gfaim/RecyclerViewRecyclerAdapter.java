@@ -3,6 +3,7 @@ package fr.insa.h4401.gfaim;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -43,15 +44,22 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         final ItemModel item = data.get(position);
         final Resources resource = context.getResources();
         holder.textView.setText(item.description);
-        //holder.itemView.setBackgroundColor(resource.getColor(item.colorId1));
-        //holder.expandableLayout.setBackgroundColor(resource.getColor(item.colorId2));
         holder.expandableLayout.setInterpolator(item.interpolator);
         holder.expandableLayout.setExpanded(expandState.get(position));
+
+        holder.trash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlarmsFragment.remove(item);
+            }
+        });
+
         holder.expandableLayout.setListener(new ExpandableLayoutListenerAdapter() {
             @Override
             public void onPreOpen() {
                 createRotateAnimator(holder.triangle, 0f, 180f).start();
-                holder.itemView.setBackgroundColor(resource.getColor(item.colorId2));
+                holder.itemView.setBackgroundColor(Color.WHITE);
+                holder.itemView.setElevation(3);
                 holder.lineAbove.setVisibility(View.GONE);
                 expandState.put(position, true);
             }
@@ -89,6 +97,7 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         public ExpandableRelativeLayout expandableLayout;
         public View triangle;
         public View lineAbove;
+        public View trash;
 
         public ViewHolder(View v) {
             super(v);
@@ -97,6 +106,7 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             expandableLayout = (ExpandableRelativeLayout) v.findViewById(R.id.expandableLayout);
             triangle = v.findViewById(R.id.triangle);
             lineAbove = v.findViewById(R.id.line);
+            trash = v.findViewById(R.id.trash);
         }
     }
 

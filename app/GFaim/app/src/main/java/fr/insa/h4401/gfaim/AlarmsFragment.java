@@ -32,8 +32,8 @@ import java.util.List;
 public class AlarmsFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
 
     private OnFragmentInteractionListener mListener;
-    final List<ItemModel> data = new ArrayList<>();
-    RecyclerView recyclerView;
+    static final List<ItemModel> data = new ArrayList<>();
+    static RecyclerView recyclerView;
     public AlarmsFragment() {
         // Required empty public constructor
     }
@@ -78,21 +78,15 @@ public class AlarmsFragment extends Fragment implements TimePickerDialog.OnTimeS
             }
         });
 
-
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-     //   recyclerView.addItemDecoration(new DividerItemDecoration(this));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         data.add(new ItemModel(
                 "11:55",
-                R.color.white,
-                R.color.white,
                 Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
         data.add(new ItemModel(
                 "12:55",
-                R.color.white,
-                R.color.white,
                 Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
 
         recyclerView.setAdapter(new RecyclerViewRecyclerAdapter(data));
@@ -129,15 +123,29 @@ public class AlarmsFragment extends Fragment implements TimePickerDialog.OnTimeS
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
 
+        String hour;
+        String min;
+
+        if (hourOfDay < 10)
+            hour = "0" + hourOfDay;
+        else hour = "" + hourOfDay;
+
+        if (minute < 10)
+            min = "0" + minute;
+        else min = "" + minute;
+
         data.add(new ItemModel(
-                hourOfDay+":"+minute,
-                R.color.white,
-                R.color.white,
+                hour + ":" + min,
                 Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR)));
 
         recyclerView.setAdapter(new RecyclerViewRecyclerAdapter(data));
 
 
+    }
+
+    public static void remove(ItemModel item) {
+        data.remove(item);
+        recyclerView.setAdapter(new RecyclerViewRecyclerAdapter(data));
     }
 
     /**
