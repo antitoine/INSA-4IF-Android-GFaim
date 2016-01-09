@@ -1,6 +1,5 @@
 package fr.insa.h4401.gfaim;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -149,9 +148,9 @@ public class RestaurantsActivity extends AppCompatActivity
         if (id == R.id.advanced_search) {
 
             MaterialDialog dialog = new MaterialDialog.Builder(this)
-                    .title("Paramètres de recherche")
+                    .title(R.string.advanced_search)
                     .customView(R.layout.advanced_search_layout, false)
-                    .positiveText("Enregistrer")
+                    .positiveText("Rechercher")
                     .show();
 
             View view = dialog.getCustomView();
