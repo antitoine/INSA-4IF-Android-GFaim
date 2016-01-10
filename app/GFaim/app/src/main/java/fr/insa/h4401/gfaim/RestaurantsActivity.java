@@ -120,17 +120,23 @@ public class RestaurantsActivity extends AppCompatActivity
         GoogleSignInAccount acct = ConnectionActivity.getGoogleSignInAccount();
 
 
-        try {
-            ((TextView) findViewById(R.id.menu_account_name)).setText(acct.getDisplayName());
-            ((TextView) findViewById(R.id.menu_account_email)).setText(acct.getEmail());
+        if (acct == null) {
+            ((ImageView) findViewById(R.id.menu_account_image)).setImageBitmap(
+                    BitmapImageHelper.decodeBitmapFromResource(getResources(), R.drawable.cuisto, 100, 100));
+        } else  {
+            try {
+                ((TextView) findViewById(R.id.menu_account_name)).setText(acct.getDisplayName());
+                ((TextView) findViewById(R.id.menu_account_email)).setText(acct.getEmail());
 
-            URL url = new URL(acct.getPhotoUrl().toString());
-            RoundImage bmp = new RoundImage(new BitmapGetter().execute(url).get());
+                URL url = new URL(acct.getPhotoUrl().toString());
+                RoundImage bmp = new RoundImage(new BitmapGetter().execute(url).get());
 
-            ((ImageView) findViewById(R.id.menu_account_image)).setImageDrawable(bmp);
-        } catch (Exception e) {
-            e.printStackTrace();
+                ((ImageView) findViewById(R.id.menu_account_image)).setImageDrawable(bmp);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);

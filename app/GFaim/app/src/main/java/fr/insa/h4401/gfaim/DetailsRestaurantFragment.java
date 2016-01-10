@@ -108,6 +108,9 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
             starIcon.setVisibility(View.VISIBLE);
         }
 
+        ((ImageView) v.findViewById(R.id.restaurant_detail_img_event)).setImageBitmap(
+                BitmapImageHelper.decodeBitmapFromResource(getResources(), R.drawable.tacos, 100, 100));
+
         // --- Actions des boutons
 
         menu = (FloatingActionMenu) v.findViewById(R.id.menu);

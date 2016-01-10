@@ -1,10 +1,13 @@
 package fr.insa.h4401.gfaim;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -31,9 +34,12 @@ public class ConnectionActivity extends AppCompatActivity implements GoogleApiCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         setContentView(R.layout.activity_connection);
+
+        ImageView imageLogo = (ImageView) findViewById(R.id.connection_logo);
+
+        imageLogo.setImageBitmap(
+             BitmapImageHelper.decodeBitmapFromResource(getResources(), R.drawable.logo, 500, 468));
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.

@@ -245,7 +245,7 @@
                             android:layout_height="40dp"
                             android:adjustViewBounds="true"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/tacos" />
+                            android:id="@+id/restaurant_detail_img_event"/>
 
 
                         <LinearLayout

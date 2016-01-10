@@ -17,9 +17,8 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="250dp"
-            android:id="@+id/imageView15"
-            android:src="@drawable/logo"
+            android:layout_height="300dp"
+            android:id="@+id/connection_logo"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
