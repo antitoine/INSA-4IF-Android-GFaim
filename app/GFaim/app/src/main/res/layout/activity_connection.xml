@@ -17,7 +17,7 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:id="@+id/imageView15"
             android:src="@drawable/logo"
             android:layout_gravity="center_horizontal"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:layout_marginBottom="10dp"
-                android:text="Connecte toi pour pouvoir poster des avis sur les restaurants, poster des photos, ou gérer un restaurant"/>
+                android:text="Connecte toi pour pouvoir poster des avis sur les restaurants, poster des photos ou gérer un restaurant !"/>
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/sign_in_button"
