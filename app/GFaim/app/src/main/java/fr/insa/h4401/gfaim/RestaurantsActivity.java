@@ -1,5 +1,6 @@
 package fr.insa.h4401.gfaim;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,10 +16,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.appyvet.rangebar.RangeBar;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.rey.material.widget.Button;
+import com.rey.material.widget.CheckBox;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import java.net.URL;
 
@@ -66,9 +75,7 @@ public class RestaurantsActivity extends AppCompatActivity
 
             if (fragmentManager.getBackStackEntryCount() > 0) {
                 updateOptionsMenuSelectedItem(fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getId());
-
-                getSupportFragmentManager().popBackStackImmediate();
-
+                getSupportFragmentManager().popBackStack();
             }
         }
     }
@@ -81,7 +88,7 @@ public class RestaurantsActivity extends AppCompatActivity
                 checkedItem = R.id.nav_restaurants;
                 break;
 
-            case R.layout.details_restaurant:
+            case R.layout.fragment_details_restaurant:
                 checkedItem = R.id.nav_restaurants;
                 break;
 
@@ -139,7 +146,111 @@ public class RestaurantsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.advanced_search) {
+
+            MaterialDialog dialog = new MaterialDialog.Builder(this)
+                    .title("Recherche avancée")
+                    .customView(R.layout.advanced_search_layout, false)
+                    .positiveText("Rechercher")
+                    .show();
+
+            View view = dialog.getCustomView();
+
+//            Spinner spinner = (Spinner) view.findViewById(R.id.search_type);
+//            // Create an ArrayAdapter using the string array and a default spinner layout
+//            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                    R.array.regimes, android.R.layout.simple_spinner_item);
+//            // Specify the layout to use when the list of choices appears
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//            // Apply the adapter to the spinner
+//            spinner.setAdapter(adapter);
+
+            final Activity app = this;
+            Button selectType = (Button) view.findViewById(R.id.search_restaurants_types);
+            selectType.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new MaterialDialog.Builder(app)
+                            .title(R.string.type_restaurants)
+                            .widgetColor(getResources().getColor(R.color.colorPrimary))
+                            .items(R.array.type_restaurants)
+                            .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                                @Override
+                                public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                                    return true;
+                                }
+                            })
+                            .positiveText(R.string.choose)
+                            .show();
+                }
+            });
+
+
+            final CheckBox checkBox = (CheckBox) view.findViewById(R.id.search_open);
+            checkBox.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(checkBox.isChecked()) {
+                        checkBox.setText(" Peu importe");
+                    } else {
+                        checkBox.setText(" Oui");
+                    }
+                    return false;
+                }
+            });
+
+            RangeBar priceRange = (RangeBar) view.findViewById(R.id.search_price_rangebar);
+            final TextView priceRangeText = (TextView) view.findViewById(R.id.search_price_rangebar_text);
+            priceRange.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
+                @Override
+                public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex,
+                                                  int rightPinIndex,
+                                                  String leftPinValue, String rightPinValue) {
+                    priceRangeText.setText("Prix entre "+leftPinValue+"€ et "+rightPinValue+"€");
+
+                }
+            });
+
+
+            DiscreteSeekBar distanceMax = (DiscreteSeekBar) view.findViewById(R.id.search_distance_max);
+            final TextView distance_max_text = (TextView) view.findViewById(R.id.search_distance_max_text);
+            distanceMax.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
+                @Override
+                public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+                    distance_max_text.setText("Distance max. : " + value + "km");
+                }
+
+                @Override
+                public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
+
+                }
+            });
+
+            DiscreteSeekBar waitingTime = (DiscreteSeekBar) view.findViewById(R.id.search_waiting_time);
+            final TextView waiting_text = (TextView) view.findViewById(R.id.search_waiting_max_text);
+            waitingTime.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
+                @Override
+                public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+                    waiting_text.setText("Tems d'attente max. : " + value + "min");
+                }
+
+                @Override
+                public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
+
+                }
+            });
+
+
             return true;
         }
 
@@ -161,7 +272,7 @@ public class RestaurantsActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_alarms:
-                fragment = new AlarmSettingsFragment();
+                fragment = new AlarmsFragment();
                 break;
 
             case R.id.nav_map:

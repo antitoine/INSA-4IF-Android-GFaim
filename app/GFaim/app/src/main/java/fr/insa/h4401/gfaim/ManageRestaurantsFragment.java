@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import io.techery.properratingbar.ProperRatingBar;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,7 +92,7 @@ public class ManageRestaurantsFragment extends Fragment implements View.OnClickL
 
         ((ImageView) cardview.findViewById(R.id.restaurant_cardview_image)).setImageResource(restaurant.getImageResource());
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_title)).setText(restaurant.getTitle());
-        ((RatingBar) cardview.findViewById(R.id.restaurant_cardview_rating)).setRating(restaurant.getRating());
+        ((ProperRatingBar) cardview.findViewById(R.id.restaurant_cardview_rating)).setRating((int)restaurant.getRating());
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_nb_rates)).setText(Integer.toString(restaurant.getNbRates()));
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_price)).setText(restaurant.getPrice());
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_waiting_duration)).setText(Integer.toString(restaurant.getWaitingDuration()));

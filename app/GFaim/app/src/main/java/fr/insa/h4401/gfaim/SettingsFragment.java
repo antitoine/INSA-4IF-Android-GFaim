@@ -5,15 +5,27 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+
+import org.apmem.tools.layouts.FlowLayout;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -68,7 +80,7 @@ public class SettingsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
@@ -83,19 +95,58 @@ public class SettingsFragment extends Fragment {
         spinner.setAdapter(adapter);
 
 
+        final HashMap<Integer, Allergie> allergieHashMap = RestaurantFactory.getAllergies();
+        final FlowLayout tagLayout = (FlowLayout) v.findViewById(R.id.tagAllergies);
 
-        CardView addAllergie = (CardView) v.findViewById(R.id.setting_add_button);
+        for(Map.Entry<Integer, Allergie> entry : allergieHashMap.entrySet()) {
+            Integer key = entry.getKey();
+            Allergie value = entry.getValue();
+
+            if(value.isSelected()){
+                tagLayout.addView(createTag(inflater, value));
+            }
+        }
+
+        com.rey.material.widget.Button addAllergie = (com.rey.material.widget.Button) v.findViewById(R.id.setting_add_button);
         addAllergie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ArrayList<Integer> ids = new ArrayList<Integer>();
+
+                for(Map.Entry<Integer, Allergie> entry : allergieHashMap.entrySet()) {
+                    Integer key = entry.getKey();
+                    Allergie value = entry.getValue();
+
+                    if(value.isSelected()){
+                        ids.add(key);
+                    }
+                }
+
                 new MaterialDialog.Builder(getContext())
                         .title(R.string.title)
                         .widgetColor(getResources().getColor(R.color.colorPrimary))
                         .items(R.array.allergies)
-                        .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                        .itemsCallbackMultiChoice(convertIntegers(ids), new MaterialDialog.ListCallbackMultiChoice() {
                             @Override
                             public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                                //TODO : Est-ce qu'on sauvegarde ça ? à voir si c'est utile...
+                                for(Map.Entry<Integer, Allergie> entry : allergieHashMap.entrySet()) {
+                                    entry.getValue().setSelected(false);
+                                }
+                                for (Integer aWhich : which) {
+                                    allergieHashMap.get(aWhich).setSelected(true);
+                                }
+
+                                tagLayout.removeAllViews();
+                                for(Map.Entry<Integer, Allergie> entry : allergieHashMap.entrySet()) {
+                                    Integer key = entry.getKey();
+                                    Allergie value = entry.getValue();
+
+                                    if(value.isSelected()){
+                                        tagLayout.addView(createTag(inflater, value));
+                                    }
+                                }
+
                                 return true;
                             }
                         })
@@ -105,6 +156,13 @@ public class SettingsFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private View createTag(LayoutInflater inflater, Allergie allergie) {
+        View tagView = inflater.inflate(R.layout.tag_view, null);
+        TextView tagViewText = (TextView) tagView.findViewById(R.id.textTag);
+        tagViewText.setText(allergie.getName());
+        return tagView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -145,5 +203,15 @@ public class SettingsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public static Integer[] convertIntegers(List<Integer> integers)
+    {
+        Integer[] ret = new Integer[integers.size()];
+        Iterator<Integer> iterator = integers.iterator();
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = iterator.next();
+        }
+        return ret;
     }
 }

@@ -1,35 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.insa.h4401.gfaim.RestaurantsFragment">
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    tools:context="fr.insa.h4401.gfaim.AlarmsFragment">
 
-
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:id="@+id/list_restaurants">
-
-            <!-- cardview_restaurant_layout.xml added in RestaurantsFragment.java -->
-        </LinearLayout>
-    </ScrollView>
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
     <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/list_restaurants_favorite"
+        android:id="@+id/alarm_add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:clickable="true"
-
         fab:menu_animationDelayPerItem="50"
         fab:menu_backgroundColor="@android:color/transparent"
         fab:menu_buttonSpacing="0dp"
@@ -37,7 +26,6 @@
         fab:menu_colorPressed="#E75043"
         fab:menu_colorRipple="#99FFFFFF"
         fab:menu_fab_size="normal"
-        fab:menu_icon="@drawable/ic_star_outline_24dp"
         fab:menu_labels_colorNormal="#333333"
         fab:menu_labels_colorPressed="#444444"
         fab:menu_labels_colorRipple="#66FFFFFF"
@@ -46,26 +34,19 @@
         fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
         fab:menu_labels_margin="0dp"
         fab:menu_labels_maxLines="1"
-        fab:menu_labels_padding="4dp"
-        fab:menu_labels_paddingBottom="4dp"
-        fab:menu_labels_paddingLeft="4dp"
-        fab:menu_labels_paddingRight="4dp"
-        fab:menu_labels_paddingTop="4dp"
-        fab:menu_labels_position="left"
         fab:menu_labels_showAnimation="@anim/fab_scale_up"
         fab:menu_labels_showShadow="true"
         fab:menu_labels_singleLine="false"
         fab:menu_labels_textColor="#FFFFFF"
         fab:menu_labels_textSize="14sp"
-        fab:menu_fab_label="Favoris affichés"
         fab:menu_fab_show_animation="@anim/fab_scale_up"
-        fab:menu_openDirection="up"
         fab:menu_shadowColor="#66000000"
         fab:menu_shadowRadius="4dp"
         fab:menu_shadowXOffset="1dp"
         fab:menu_shadowYOffset="3dp"
         fab:menu_showShadow="true">
 
-        </com.github.clans.fab.FloatingActionMenu>
+    </com.github.clans.fab.FloatingActionMenu>
+
 
 </RelativeLayout>

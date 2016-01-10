@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/nom_resto"
                 android:layout_column="2"
@@ -42,7 +42,7 @@
                 android:adjustViewBounds="true" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText2"
                 android:layout_column="2"
@@ -125,12 +125,12 @@
             android:layout_marginTop="15dp">
 
             <Switch
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/switch1"
                 android:layout_column="2"
                 android:checked="false"
-                android:clickable="false"
+                android:clickable="true"
                 android:layout_marginLeft="50dp"
                 android:text="À emporter" />
         </TableRow>
@@ -146,7 +146,7 @@
                 android:id="@+id/switch2"
                 android:layout_column="2"
                 android:checked="true"
-                android:clickable="false"
+                android:clickable="true"
                 android:layout_marginLeft="50dp"
                 android:text="Carte Bleue" />
         </TableRow>
@@ -162,9 +162,9 @@
                 android:id="@+id/switch3"
                 android:layout_column="2"
                 android:checked="false"
-                android:clickable="false"
+                android:clickable="true"
                 android:layout_marginLeft="50dp"
-                android:text="Fumer" />
+                android:text="Végétarien" />
         </TableRow>
     </TableLayout>
 

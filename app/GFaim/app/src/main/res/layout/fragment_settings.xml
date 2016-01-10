@@ -1,90 +1,111 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.insa.h4401.gfaim.SettingsFragment">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="fr.insa.h4401.gfaim.SettingsFragment"
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TableRow
-                android:id="@+id/tableRow1"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|top"
+            android:orientation="vertical">
+
+
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp">
+                android:layout_below="@+id/textViewLeaveRemainingDescription"
+                android:stretchColumns="0,1">
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="80dp"
-                    android:text="@string/Régime"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <Spinner
-                    android:id="@+id/settings_regime_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/Régime"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            </TableRow>
+                    <Spinner
+                        android:id="@+id/settings_regime_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Allergies"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/setting_add_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:layout_below="@+id/button2"
-                    android:layout_centerHorizontal="true"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    card_view:cardBackgroundColor="#d9d9d9"
-                    card_view:cardCornerRadius="2dp"
-                    card_view:cardElevation="1dp">
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent">
-
-                        <TextView
-                            android:id="@+id/textView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:minWidth="88dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:singleLine="true"
-                            android:text="@string/selectionerAllergies"
-                            android:textColor="#000000" />
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-
-            </TableRow>
-        </TableLayout>
+                </TableRow>
 
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/search_distance_max_text"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="wrap_content"
+                        android:text="Distance max par default"
+                        android:layout_gravity="left" />
+
+                    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                        android:id="@+id/search_distance_max"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        app:dsb_min="1"
+                        app:dsb_max="15"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Allergies"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <com.rey.material.widget.Button
+                        android:id="@+id/setting_add_button"
+                        style="@style/Material.Drawable.Ripple.Touch"
+                        app:rd_enable="true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:text="Choisir les allergies" />
+                </TableRow>
+
+
+
+
+            </TableLayout>
+            <org.apmem.tools.layouts.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/tagAllergies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </org.apmem.tools.layouts.FlowLayout>
+        </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</ScrollView>
+
+
+

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,13 @@ import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
 import org.osmdroid.bonuspack.overlays.MapEventsReceiver;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.bonuspack.overlays.Polyline;
+import org.osmdroid.bonuspack.routing.Road;
+import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.util.ResourceProxyImpl;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Overlay;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -34,12 +34,9 @@ import java.util.List;
 public class MapFragment extends Fragment implements MapEventsReceiver {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_DEFAULT_RESTAURANT = "defaultRestaurantNameId";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String defaultRestaurantNameId;
 
     private OnFragmentInteractionListener mListener;
     private ResourceProxyImpl mResourceProxy;
@@ -52,17 +49,14 @@ public class MapFragment extends Fragment implements MapEventsReceiver {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+
      * @return A new instance of fragment MapFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MapFragment newInstance(String param1, String param2) {
+    public static MapFragment newInstance(String restaurantNameId) {
         MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_DEFAULT_RESTAURANT, restaurantNameId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,27 +65,24 @@ public class MapFragment extends Fragment implements MapEventsReceiver {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            defaultRestaurantNameId = getArguments().getString(ARG_DEFAULT_RESTAURANT);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        Log.d("create", "create map fragment");
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_map, container, false);
 
         mMapView = (MapView) view.findViewById(R.id.mapview);
         mMapView.setTileSource(TileSourceFactory.MAPNIK);
-        //map.setBuiltInZoomControls(true);
         mMapView.setMultiTouchControls(true);
 
-
         IMapController mapController = mMapView.getController();
-        mapController.setZoom(18);
+        mapController.setZoom(16);
 
         // Event overlay
         MapEventsOverlay evOverlay = new MapEventsOverlay(getContext(), this);
@@ -101,14 +92,50 @@ public class MapFragment extends Fragment implements MapEventsReceiver {
         Marker currentPosition = MarkerFactory.getCurrentLocationMarker(mMapView);
         MapData.getInstance().addMarker(currentPosition, MapData.KEY_CURRENT_POS_MARKER);
 
+        Marker defaultMarker = null;
+
         // Restaurants
         for (Restaurant restaurant : RestaurantFactory.getAllRestaurants()) {
-            MapData.getInstance().addMarker(MarkerFactory.getRestaurantMarker(this, mMapView, restaurant), restaurant.getNameId());
+            Marker restaurantMarker = MarkerFactory.getRestaurantMarker(this, mMapView, restaurant);
+            MapData.getInstance().addMarker(
+                    restaurantMarker,
+                    restaurant.getNameId()
+            );
         }
 
         mMapView.getOverlays().addAll(MapData.getInstance().getMarkers());
 
-        mapController.setCenter(currentPosition.getPosition());
+        if (defaultRestaurantNameId == null) {
+            mapController.setCenter(currentPosition.getPosition());
+        } else {
+            mapController.setCenter(MapData.getInstance().getMarker(defaultRestaurantNameId).getPosition());
+        }
+
+        if (defaultRestaurantNameId != null) {
+            view.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    MapData.getInstance().getMarker(defaultRestaurantNameId).showInfoWindow();
+                    MapData.getInstance().setCurrentMarker(MapData.getInstance().getMarker(defaultRestaurantNameId));
+
+                    try {
+                        MapQuestRouteCompute mapQuestRouteCompute = new MapQuestRouteCompute(mMapView.getContext());
+                        Road road = mapQuestRouteCompute.execute(
+                                MarkerFactory.getCurrentLocationMarker(mMapView).getPosition(),
+                                MapData.getInstance().getMarker(defaultRestaurantNameId).getPosition()
+                        ).get();
+                        Polyline roadOverlay = RoadManager.buildRoadOverlay(road, mMapView.getContext());
+                        MapData.getInstance().setCurrentRoad(roadOverlay);
+
+                        mMapView.getOverlays().add(0, roadOverlay);
+                    } catch (Exception e) {
+                        /* On ne trace pas le chemin s'il n'a pas pu être calculé. */
+                       e.printStackTrace();
+                    }
+
+                }
+            }, 1);
+        }
 
         mMapView.invalidate();
 

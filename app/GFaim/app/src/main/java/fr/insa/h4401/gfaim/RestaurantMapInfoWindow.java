@@ -46,8 +46,6 @@ public class RestaurantMapInfoWindow extends MarkerInfoWindow implements View.On
 
     @Override
     public void onClick(View v) {
-        Log.d("map", "on click mapinfo !");
-
         DetailsRestaurantFragment detailsRestaurantFragment = DetailsRestaurantFragment.newInstance(mRestaurant.getNameId());
 
         FragmentManager fragmentManager = mFragment.getActivity().getSupportFragmentManager();

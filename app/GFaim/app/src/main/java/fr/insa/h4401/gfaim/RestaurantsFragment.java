@@ -6,13 +6,24 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.github.clans.fab.FloatingActionMenu;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import io.techery.properratingbar.ProperRatingBar;
 
 
 /**
@@ -34,6 +45,8 @@ public class RestaurantsFragment extends Fragment implements View.OnClickListene
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private FloatingActionMenu favoritesFloatingButton;
+    private Map<Restaurant, View> restaurantsCardViews = new HashMap<>();
 
     public RestaurantsFragment() {
 
@@ -76,10 +89,52 @@ public class RestaurantsFragment extends Fragment implements View.OnClickListene
 
         // Create the cardview
         for (Restaurant restaurant : RestaurantFactory.getAllRestaurants()) {
-            linearLayout.addView(createRestaurantCardView(inflater, restaurant));
+            View restaurantView = createRestaurantCardView(inflater, restaurant);
+            restaurantsCardViews.put(restaurant, restaurantView);
+            linearLayout.addView(restaurantView);
         }
 
+        // Favorites floating button
+        favoritesFloatingButton = (FloatingActionMenu) view.findViewById(R.id.list_restaurants_favorite);
+        favoritesFloatingButton.hideMenuButton(false);
+
+        favoritesFloatingButton.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (favoritesFloatingButton.isOpened()) {
+                    favoritesFloatingButton.getMenuIconView().setImageResource(R.drawable.ic_star_outline_24dp);
+                    updateFavoritesRestaurants(false);
+                } else {
+                    favoritesFloatingButton.getMenuIconView().setImageResource(R.drawable.ic_star_24dp);
+                    updateFavoritesRestaurants(true);
+                }
+
+                favoritesFloatingButton.toggle(true);
+            }
+        });
+
+        view.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                favoritesFloatingButton.showMenuButton(true);
+            }
+
+        }, 500);
+
         return view;
+    }
+
+    private void updateFavoritesRestaurants(boolean favoritesRequired) {
+        for (Map.Entry<Restaurant, View> entry : restaurantsCardViews.entrySet()) {
+            if (favoritesRequired) {
+                entry.getValue().setVisibility(
+                        (entry.getKey().isFavorite()) ? View.VISIBLE : View.GONE
+                );
+            } else {
+                entry.getValue().setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     private View createRestaurantCardView(LayoutInflater inflater, Restaurant restaurant) {
@@ -89,8 +144,11 @@ public class RestaurantsFragment extends Fragment implements View.OnClickListene
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_enum)).setText(restaurant.getNameId());
 
         ((ImageView) cardview.findViewById(R.id.restaurant_cardview_image)).setImageResource(restaurant.getImageResource());
+        if (restaurant.isFavorite()) {
+            cardview.findViewById(R.id.restaurant_cardview_favorite).setVisibility(View.VISIBLE);
+        }
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_title)).setText(restaurant.getTitle());
-        ((RatingBar) cardview.findViewById(R.id.restaurant_cardview_rating)).setRating(restaurant.getRating());
+        ((ProperRatingBar) cardview.findViewById(R.id.restaurant_cardview_rating)).setRating((int)restaurant.getRating());
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_nb_rates)).setText(Integer.toString(restaurant.getNbRates()));
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_price)).setText(restaurant.getPrice());
         ((TextView) cardview.findViewById(R.id.restaurant_cardview_waiting_duration)).setText(Integer.toString(restaurant.getWaitingDuration()));

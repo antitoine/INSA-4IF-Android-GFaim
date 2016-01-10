@@ -7,6 +7,7 @@ import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.views.MapView;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Pierre on 02/01/2016.
@@ -14,11 +15,11 @@ import java.util.List;
 public class RestaurantMarkerClickListener implements Marker.OnMarkerClickListener {
 
     private static Polyline currentRoad = null;
-    private static Marker currentMarker = null;
 
     @Override
     public boolean onMarkerClick(Marker marker, MapView mapView) {
         hideOldMarker();
+        mapView.getOverlays().remove(MapData.getInstance().getCurrentRoad());
 
         marker.showInfoWindow();
 
@@ -43,14 +44,12 @@ public class RestaurantMarkerClickListener implements Marker.OnMarkerClickListen
             e.printStackTrace();
         }
 
-        currentMarker = marker;
-
         return true;
     }
 
     private void hideOldMarker() {
-        if (currentMarker != null) {
-            currentMarker.closeInfoWindow();
+        for (Marker marker : MapData.getInstance().getMarkers()) {
+            marker.closeInfoWindow();
         }
     }
 

@@ -4,13 +4,12 @@ package fr.insa.h4401.gfaim;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,18 +20,20 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import org.osmdroid.api.IMapController;
-import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.bonuspack.routing.Road;
 import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
+
+import io.techery.properratingbar.ProperRatingBar;
 
 /**
  * Details Restaurant fragment
@@ -56,7 +57,6 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
     }
 
     /**
-     * @param Restaurant
      * @return A new instance of fragment DetailsRestaurantFragment.
      */
     public static DetailsRestaurantFragment newInstance(String restaurant) {
@@ -78,45 +78,50 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.details_restaurant, null);
+        View v = inflater.inflate(R.layout.fragment_details_restaurant, null);
 
-        final Restaurant resto = RestaurantFactory.getRestaurant(mRestaurant);
+        final Restaurant restau = RestaurantFactory.getRestaurant(mRestaurant);
 
         TextView RestaurantTitle = (TextView) v.findViewById(R.id.restaurant_detail_name);
-        RestaurantTitle.setText(resto.getTitle());
+        RestaurantTitle.setText(restau.getTitle());
 
-        RatingBar ratingBar = (RatingBar) v.findViewById(R.id.restaurant_detail_rating);
-        ratingBar.setRating(resto.getRating());
-
-        Drawable progressDrawable = ratingBar.getProgressDrawable();
-        // drawable.setColorFilter(Color.parseColor("white"), PorterDuff.Mode.SRC_ATOP);
-        DrawableCompat.setTint(progressDrawable, Color.WHITE);
+        ProperRatingBar ratingBar = (ProperRatingBar) v.findViewById(R.id.restaurant_detail_rating);
+        ratingBar.setRating((int)restau.getRating());
 
         TextView nbRates = (TextView) v.findViewById(R.id.restaurant_details_nb_rates);
-        nbRates.setText(Integer.toString(resto.getNbRates()));
+        nbRates.setText(Integer.toString(restau.getNbRates()));
 
         TextView status = (TextView) v.findViewById(R.id.restaurant_detail_time);
-        status.setText(resto.getStatus());
+        status.setText(restau.getStatus());
 
         TextView price = (TextView) v.findViewById(R.id.restaurant_detail_price);
-        price.setText(resto.getPrice());
+        price.setText(restau.getPrice());
 
         TextView timeToWait = (TextView) v.findViewById(R.id.restaurant_detail_waitingTime);
-        timeToWait.setText(Integer.toString(resto.getWaitingDuration()));
+        timeToWait.setText(Integer.toString(restau.getWaitingDuration()));
 
         TextView type = (TextView) v.findViewById(R.id.restaurant_detail_type);
-        type.setText(resto.getType());
+        type.setText(restau.getType());
 
-        starIcon = (ImageView) v.findViewById(R.id.star);
-        if(resto.isFavorite()){
-            starIcon.setImageResource(R.drawable.ic_star_24dp);
-        }else {
-            starIcon.setImageResource(R.drawable.ic_star_outline_24dp);
+        starIcon = (ImageView) v.findViewById(R.id.restaurant_detail_favorite);
+        if (restau.isFavorite()) {
+            starIcon.setVisibility(View.VISIBLE);
         }
 
         // --- Actions des boutons
 
         menu = (FloatingActionMenu) v.findViewById(R.id.menu);
+
+        menu.hideMenuButton(false);
+
+        v.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                menu.showMenuButton(true);
+            }
+
+        }, 500);
 
         fab_call = (FloatingActionButton) v.findViewById(R.id.fab_call);
         fab_call.setOnClickListener(new View.OnClickListener() {
@@ -143,14 +148,14 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         fab_star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (resto.isFavorite()) {
-                    starIcon.setImageResource(R.drawable.ic_star_outline_24dp);
+                if (restau.isFavorite()) {
+                    starIcon.setVisibility(View.INVISIBLE);
                     fab_star.setLabelText("Ajouter aux favoris");
-                    resto.setFavorite(false);
+                    restau.setFavorite(false);
                 } else {
-                    starIcon.setImageResource(R.drawable.ic_star_24dp);
+                    starIcon.setVisibility(View.VISIBLE);
                     fab_star.setLabelText("Retirer des favoris");
-                    resto.setFavorite(true);
+                    restau.setFavorite(true);
                 }
                 menu.toggle(false);
             }
@@ -161,9 +166,23 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
             @Override
             public void onClick(View v) {
                 menu.toggle(false);
-                new MaterialDialog.Builder(getContext())
-                        .content("TODO")
+                MaterialDialog dialog = new MaterialDialog.Builder(getContext())
+                        .title(R.string.menu_tile)
+                        .customView(R.layout.menu_dialog_layout, false)
+                        .positiveText("Fermer")
                         .show();
+
+                View view = dialog.getCustomView();
+                SliderLayout sliderShow = (SliderLayout) view.findViewById(R.id.slider);
+
+                DefaultSliderView defaultSliderView2 = new DefaultSliderView(getContext());
+                defaultSliderView2.image(R.drawable.menu1);
+                sliderShow.addSlider(defaultSliderView2);
+
+                DefaultSliderView defaultSliderView3 = new DefaultSliderView(getContext());
+                defaultSliderView3.image(R.drawable.menu2);
+                sliderShow.addSlider(defaultSliderView3);
+
             }
         });
 
@@ -172,9 +191,25 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
             @Override
             public void onClick(View v) {
                 menu.toggle(false);
-                new MaterialDialog.Builder(getContext())
-                        .content("TODO")
+                MaterialDialog dialog = new MaterialDialog.Builder(getContext())
+                        .customView(R.layout.slider_photos_dialog, false)
+                        .positiveText("Fermer")
                         .show();
+
+                View view = dialog.getCustomView();
+                SliderLayout sliderShow = (SliderLayout) view.findViewById(R.id.slider);
+                DefaultSliderView defaultSliderView1 = new DefaultSliderView(getContext());
+                defaultSliderView1.image(R.drawable.snack_campus);
+                sliderShow.addSlider(defaultSliderView1);
+
+                DefaultSliderView defaultSliderView2 = new DefaultSliderView(getContext());
+                defaultSliderView2.image(R.drawable.snack_campus);
+                sliderShow.addSlider(defaultSliderView2);
+
+                DefaultSliderView defaultSliderView3 = new DefaultSliderView(getContext());
+                defaultSliderView3.image(R.drawable.snack_campus);
+                sliderShow.addSlider(defaultSliderView3);
+
             }
         });
 
@@ -182,7 +217,7 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 closeFloatingMenu();
-                return true;
+                return false;
             }
         });
 
@@ -195,9 +230,24 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
 
         mapView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View arg0, MotionEvent arg1) {
-                closeFloatingMenu();
-                return true;
+            public boolean onTouch(View v, MotionEvent event) {
+                if (menu.isOpened()) {
+                    closeFloatingMenu();
+                } else {
+                    if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
+                        MapFragment mapFragment = MapFragment.newInstance(restau.getNameId());
+
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.frame_content, mapFragment)
+                                .addToBackStack(null)
+                                .commit();
+
+                        fragmentManager.executePendingTransactions();
+                    }
+                }
+                return false;
             }
         });
 
@@ -205,7 +255,7 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         mapController.setZoom(18);
 
         Marker currentPos = MapData.getInstance().getMarker(MapData.KEY_CURRENT_POS_MARKER);
-        Marker restauMarker = MapData.getInstance().getMarker(resto.getNameId());
+        Marker restauMarker = MapData.getInstance().getMarker(restau.getNameId());
 
         mapView.getOverlays().add(currentPos);
         mapView.getOverlays().add(restauMarker);

@@ -1,6 +1,11 @@
 package fr.insa.h4401.gfaim;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.osmdroid.util.GeoPoint;
+
+import java.io.Serializable;
 
 public class Restaurant {
 
@@ -88,4 +93,6 @@ public class Restaurant {
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
+
+
 }
