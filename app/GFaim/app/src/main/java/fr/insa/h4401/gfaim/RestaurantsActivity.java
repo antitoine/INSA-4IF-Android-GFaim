@@ -149,9 +149,9 @@ public class RestaurantsActivity extends AppCompatActivity
         if (id == R.id.advanced_search) {
 
             MaterialDialog dialog = new MaterialDialog.Builder(this)
-                    .title("Paramètres de recherche")
+                    .title("Recherche avancée")
                     .customView(R.layout.advanced_search_layout, false)
-                    .positiveText("Enregistrer")
+                    .positiveText("Rechercher")
                     .show();
 
             View view = dialog.getCustomView();

@@ -258,7 +258,6 @@
                 android:layout_gravity="left"
                 android:layout_weight="1"
                 android:textAlignment="center"
-
                 android:text="Pomme" />
 
             <TextView
