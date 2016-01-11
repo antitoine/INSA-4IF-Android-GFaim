@@ -37,6 +37,7 @@ public class RestaurantsActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_restaurants);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,16 +52,43 @@ public class RestaurantsActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_restaurants);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        // check intent
+        Bundle extras = getIntent().getExtras();
+        boolean restaurantDetail = false;
+        if(extras != null){
+            if(extras.containsKey("RestaurantDetail"))
+            {
+                restaurantDetail = true;
 
-        fragmentManager.beginTransaction()
-                .add(new MapFragment(), null)
-                .replace(R.id.frame_content, new RestaurantsFragment())
-                .commit();
+                DetailsRestaurantFragment restaurantDetailFragment = DetailsRestaurantFragment.newInstance(extras.get("RestaurantDetail").toString());
 
-        fragmentManager.executePendingTransactions();
+                FragmentManager fragmentManager = getSupportFragmentManager();
 
-        Log.d("fragment", Integer.toString(getSupportFragmentManager().getBackStackEntryCount()));
+                fragmentManager.beginTransaction()
+                        .add(new MapFragment(), null)
+                        .replace(R.id.frame_content, restaurantDetailFragment)
+                        .commit();
+
+                fragmentManager.executePendingTransactions();
+            }
+        }
+
+        if (!restaurantDetail) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            fragmentManager.beginTransaction()
+                    .add(new MapFragment(), null)
+                    .replace(R.id.frame_content, new RestaurantsFragment())
+                    .commit();
+
+            fragmentManager.executePendingTransactions();
+        }
+    }
+
+    @Override
+    public void onNewIntent(Intent intent){
+
+
 
     }
 

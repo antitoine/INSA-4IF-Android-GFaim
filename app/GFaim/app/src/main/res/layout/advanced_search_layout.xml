@@ -18,6 +18,33 @@
 
 
             <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/search_price_rangebar_text"
+                    android:paddingTop="40dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Prix entre 1€ et 30€ "
+                    android:layout_gravity="left" />
+
+
+                <com.appyvet.rangebar.RangeBar
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/search_price_rangebar"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="72dp"
+                    custom:tickStart="1"
+                    custom:pinMaxFont="12sp"
+                    custom:tickEnd="30" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -43,6 +70,8 @@
 
             </LinearLayout>
 
+
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +84,7 @@
                     android:layout_weight="1"
                     android:paddingTop="5dp"
                     android:layout_height="wrap_content"
-                    android:text="Distance Max."
+                    android:text="Distance max. : 15km "
                     android:layout_gravity="left" />
 
 
@@ -64,37 +93,14 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    app:dsb_min="1"
-                    app:dsb_max="15"/>
+                    app:dsb_min="0"
+                    app:dsb_max="15"
+                    app:dsb_value="15"
+                    />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="15dp">
 
-                <TextView
-                    android:id="@+id/search_price_rangebar_text"
-                    android:paddingTop="30dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Prix"
-                    android:layout_gravity="left" />
-
-
-                <com.appyvet.rangebar.RangeBar
-                    xmlns:custom="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/search_price_rangebar"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    custom:tickStart="1"
-                    custom:pinMaxFont="12sp"
-                    custom:tickEnd="30"/>
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -108,7 +114,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:paddingTop="5dp"
-                    android:text="Temps d'attente max"
+                    android:text="Temps d'attente max. : 15min"
                     android:layout_gravity="left" />
 
                 <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
@@ -116,8 +122,9 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    app:dsb_min="1"
-                    app:dsb_max="15"/>
+                    app:dsb_min="0"
+                    app:dsb_max="15"
+                    app:dsb_value="15"/>
             </LinearLayout>
 
             <LinearLayout
@@ -166,7 +173,7 @@
                     android:textSize="22sp"
                     android:textStyle="bold"
                     app:prb_defaultRating="0"
-                    app:prb_symbolicTick="★"
+                    app:prb_symbolicTick="✪"
                     app:prb_clickable="true"
                     app:prb_symbolicTickNormalColor="@android:color/darker_gray"
                     app:prb_symbolicTickSelectedColor="@color/colorPrimary"

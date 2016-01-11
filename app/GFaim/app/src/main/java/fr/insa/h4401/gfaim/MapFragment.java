@@ -70,12 +70,6 @@ public class MapFragment extends Fragment implements MapEventsReceiver {
     }
 
     @Override
-    public void onDestroyView() {
-        mMapView.getTileProvider().clearTileCache();
-        super.onDestroyView();
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("create", "create map fragment");

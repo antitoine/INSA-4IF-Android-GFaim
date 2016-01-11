@@ -1,10 +1,18 @@
 package fr.insa.h4401.gfaim;
 
 import android.animation.ObjectAnimator;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.Build;
+import android.provider.ContactsContract;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,8 +61,8 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         final Resources resource = context.getResources();
         holder.textView.setText(item.description);
 
-        if((item.isOn && !holder.aSwitch.isChecked()) ||
-                (!item.isOn && holder.aSwitch.isChecked()) ){
+        if ((item.isOn && !holder.aSwitch.isChecked()) ||
+                (!item.isOn && holder.aSwitch.isChecked())) {
             holder.aSwitch.toggle();
         }
 
@@ -73,7 +81,9 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             public void onPreOpen() {
                 createRotateAnimator(holder.triangle, 0f, 180f).start();
                 holder.itemView.setBackgroundColor(Color.WHITE);
-                holder.itemView.setElevation(5);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    holder.itemView.setElevation(5);
+                }
                 holder.lineAbove.setVisibility(View.GONE);
                 expandState.put(position, true);
             }
@@ -116,8 +126,8 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     private void onClickButton(final ExpandableLayout expandableLayout) {
-        for(ViewHolder v : alarmsView){
-            if(v.expandableLayout.isExpanded() && !v.expandableLayout.equals(expandableLayout)){
+        for (ViewHolder v : alarmsView) {
+            if (v.expandableLayout.isExpanded() && !v.expandableLayout.equals(expandableLayout)) {
                 v.expandableLayout.toggle();
             }
         }
@@ -148,7 +158,48 @@ public class RecyclerViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             lineAbove = v.findViewById(R.id.line);
             trash = v.findViewById(R.id.trash);
             aSwitch = (Switch) v.findViewById(R.id.switch_alarm);
+            aSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(Switch view, boolean checked) {
+
+                    if (checked) {
+                        createRestauNotification(view);
+                    }
+
+                }
+            });
             chooseRestaurantButton = (Button) v.findViewById(R.id.alarm_choose_restaurant);
+        }
+
+        private void createRestauNotification(Switch view) {
+            android.support.v4.app.NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(view.getContext())
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setContentTitle("Suggestion restaurant")
+                            .setContentText("Snack du campus - 5 min d'attente");
+
+            Intent resultIntent = new Intent(view.getContext(), RestaurantsActivity.class);
+            resultIntent.putExtra("RestaurantDetail", RestaurantFactory.name.SNACK_CAMPUS);
+
+            // Because clicking the notification opens a new ("special") activity, there's
+            // no need to create an artificial back stack.
+            PendingIntent resultPendingIntent =
+                    PendingIntent.getActivity(
+                            view.getContext(),
+                            0,
+                            resultIntent,
+                            PendingIntent.FLAG_UPDATE_CURRENT
+                    );
+
+            mBuilder.setContentIntent(resultPendingIntent);
+            mBuilder.setAutoCancel(true);
+
+            // Gets an instance of the NotificationManager service
+            NotificationManager mNotifyMgr =
+                    (NotificationManager) view.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+            // Builds the notification and issues it.
+            mNotifyMgr.notify(0, mBuilder.build());
         }
     }
 

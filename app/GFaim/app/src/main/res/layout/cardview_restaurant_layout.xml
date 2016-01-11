@@ -75,7 +75,7 @@
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 app:prb_defaultRating="0"
-                                app:prb_symbolicTick="★"
+                                app:prb_symbolicTick="✪"
                                 app:prb_clickable="false"
                                 app:prb_symbolicTickNormalColor="@android:color/darker_gray"
                                 app:prb_symbolicTickSelectedColor="@color/colorPrimary"

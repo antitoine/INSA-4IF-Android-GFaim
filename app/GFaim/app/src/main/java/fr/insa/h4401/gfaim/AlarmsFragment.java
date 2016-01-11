@@ -90,7 +90,7 @@ public class AlarmsFragment extends Fragment implements TimePickerDialog.OnTimeS
             data.add(new ItemModel(
                     "12:55",
                     Utils.createInterpolator(Utils.FAST_OUT_SLOW_IN_INTERPOLATOR),
-                    true));
+                    false));
         }
 
         recyclerView.setAdapter(new RecyclerViewRecyclerAdapter(data));
