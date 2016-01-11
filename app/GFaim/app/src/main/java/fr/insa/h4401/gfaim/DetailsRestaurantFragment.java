@@ -34,6 +34,7 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
 
 import io.techery.properratingbar.ProperRatingBar;
+import io.techery.properratingbar.RatingListener;
 
 /**
  * Details Restaurant fragment
@@ -107,6 +108,24 @@ public class DetailsRestaurantFragment extends Fragment implements View.OnTouchL
         if (restau.isFavorite()) {
             starIcon.setVisibility(View.VISIBLE);
         }
+
+
+        ProperRatingBar properRatingBar = (ProperRatingBar) v.findViewById(R.id.ratingBarMain);
+        properRatingBar.setListener(new RatingListener() {
+            @Override
+            public void onRatePicked(ProperRatingBar properRatingBar) {
+                MaterialDialog dialog = new MaterialDialog.Builder(getContext())
+                        .customView(R.layout.rating_dialog, false)
+                        .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                                return true;
+                            }
+                        })
+                        .positiveText("Envoyer")
+                        .show();
+            }
+        });
 
         ((ImageView) v.findViewById(R.id.restaurant_detail_img_event)).setImageBitmap(
                 BitmapImageHelper.decodeBitmapFromResource(getResources(), R.drawable.tacos, 100, 100));
