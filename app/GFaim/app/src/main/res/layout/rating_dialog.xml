@@ -22,7 +22,7 @@
         android:textStyle="bold"
         android:layout_marginBottom="10dp"
         app:prb_defaultRating="3"
-        app:prb_symbolicTick="★"
+        app:prb_symbolicTick="✪"
         app:prb_clickable="true"
         app:prb_symbolicTickNormalColor="@android:color/darker_gray"
         app:prb_symbolicTickSelectedColor="@color/colorPrimary"
